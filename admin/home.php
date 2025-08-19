@@ -334,6 +334,30 @@ if (isset($_SESSION['adminid'])) {
 
 
 
+    function param(w, h) {
+      var width = w;
+      var height = h;
+      var left = (screen.width - width) / 2;
+      var top = (screen.height - height) / 2;
+      var params = 'width=' + width + ', height=' + height;
+      params += ', top=' + top + ', left=' + left;
+      params += ', directories=no';
+      params += ', location=no';
+      params += ', resizable=no';
+      params += ', status=no';
+      params += ', toolbar=no';
+      return params;
+    }
+
+    function openWin(url) {
+      myWindow = window.open(url, 'mywin', param(800, 500));
+      myWindow.focus();
+    }
+
+    function openCustom(url, w, h) {
+      myWindow = window.open(url, 'mywin', param(w, h));
+      myWindow.focus();
+    }
 
 
 
@@ -342,6 +366,12 @@ if (isset($_SESSION['adminid'])) {
       var title = (document.getElementById('title')?.value || '').trim();
       var genreid = document.getElementById('genreid')?.value || '0';
       var authorid = document.getElementById('authorid')?.value || '0';
+      var description = (document.getElementById('description')?.value || '').trim(); // FIXED id
+      var published_date = document.getElementById('published_date')?.value || ''; // yyyy-mm-dd
+      var publisher = (document.getElementById('publisher')?.value || '').trim();
+      var rating = (document.getElementById('rating')?.value || '').trim();
+      var review_count = (document.getElementById('review_count')?.value || '').trim();
+      var pages = (document.getElementById('pages')?.value || '').trim();
 
       if (!title) {
         alert('Please enter a Title.');
@@ -351,6 +381,34 @@ if (isset($_SESSION['adminid'])) {
         alert('Please select a Genre.');
         return;
       }
+
+      // optional validations (kept minimal)
+      if (rating !== '') {
+        var r = parseFloat(rating);
+        // DECIMAL(2,1) means up to 9.9 (single digit before decimal)
+        if (isNaN(r) || r < 0 || r > 9.9) {
+          alert('Rating must be between 0.0 and 9.9');
+          return;
+        }
+        rating = r.toFixed(1);
+      }
+      if (review_count !== '') {
+        var rc = parseInt(review_count, 10);
+        if (isNaN(rc) || rc < 0) {
+          alert('Review Count must be a non-negative integer.');
+          return;
+        }
+        review_count = String(rc);
+      }
+      if (pages !== '') {
+        var p = parseInt(pages, 10);
+        if (isNaN(p) || p <= 0) {
+          alert('Pages must be a positive integer.');
+          return;
+        }
+        pages = String(p);
+      }
+
       if (!confirm('Add this book?')) return;
 
       var form = new FormData();
@@ -358,9 +416,15 @@ if (isset($_SESSION['adminid'])) {
       form.append('title', title);
       form.append('genreid', genreid);
       form.append('authorid', authorid);
+      form.append('description', description);
+      form.append('published_date', published_date);
+      form.append('publisher', publisher);
+      form.append('rating', rating);
+      form.append('review_count', review_count);
+      form.append('pages', pages);
 
       $.ajax({
-        url: 'pages/book.php', // <-- adjust if this file lives elsewhere
+        url: 'pages/book.php',
         type: 'POST',
         data: form,
         contentType: false,
@@ -375,26 +439,107 @@ if (isset($_SESSION['adminid'])) {
       });
     }
 
-    function delete_book(genreid) {
-      if (!genreid) return;
-      if (!confirm('Delete this genre?')) return;
+    function update_book(bookid) {
+      if (!bookid) return;
+
+      var title = (document.getElementById('title')?.value || '').trim();
+      var genreid = document.getElementById('genreid')?.value || '0';
+      var authorid = document.getElementById('authorid')?.value || '0';
+      // allow for old typo id="descrpition"
+      var descInput = document.getElementById('description') || document.getElementById('descrpition');
+      var description = (descInput?.value || '').trim();
+      var published_date = document.getElementById('published_date')?.value || '';
+      var publisher = (document.getElementById('publisher')?.value || '').trim();
+      var rating = (document.getElementById('rating')?.value || '').trim();
+      var review_count = (document.getElementById('review_count')?.value || '').trim();
+      var pages = (document.getElementById('pages')?.value || '').trim();
+
+      if (!title) {
+        alert('Please enter a Title.');
+        return;
+      }
+      if (genreid === '0') {
+        alert('Please select a Genre.');
+        return;
+      }
+
+      // minimal validations (same as add)
+      if (rating !== '') {
+        var r = parseFloat(rating);
+        if (isNaN(r) || r < 0 || r > 9.9) {
+          alert('Rating must be between 0.0 and 9.9');
+          return;
+        }
+        rating = r.toFixed(1);
+      }
+      if (review_count !== '') {
+        var rc = parseInt(review_count, 10);
+        if (isNaN(rc) || rc < 0) {
+          alert('Review Count must be a non-negative integer.');
+          return;
+        }
+        review_count = String(rc);
+      }
+      if (pages !== '') {
+        var p = parseInt(pages, 10);
+        if (isNaN(p) || p <= 0) {
+          alert('Pages must be a positive integer.');
+          return;
+        }
+        pages = String(p);
+      }
+
+      if (!confirm('Save changes to this book?')) return;
 
       var form = new FormData();
-      form.append('delete_genre', 1);
+      form.append('update_book', 1);
+      form.append('bookid', bookid);
+      form.append('title', title);
       form.append('genreid', genreid);
+      form.append('authorid', authorid);
+      form.append('description', description);
+      form.append('published_date', published_date);
+      form.append('publisher', publisher);
+      form.append('rating', rating);
+      form.append('review_count', review_count);
+      form.append('pages', pages);
 
       $.ajax({
-        url: 'pages/genre.php',
+        url: 'pages/book.php',
         type: 'POST',
         data: form,
         contentType: false,
         processData: false,
         success: function(html) {
           $("#ultimate_content").html(html).css('opacity', '1');
-          alert('Genre deleted.');
+          alert('Book updated.');
         },
         error: function() {
-          alert('Error deleting genre.');
+          alert('Error updating book.');
+        }
+      });
+    }
+
+    function delete_book(bookid) {
+      if (!bookid) return;
+      if (!confirm('Delete this book?')) return;
+
+      var form = new FormData();
+      form.append('delete_book', 1);
+      form.append('bookid', bookid);
+
+      $.ajax({
+        url: 'pages/book.php',
+        type: 'POST',
+        data: form,
+        contentType: false,
+        processData: false,
+        success: function(html) {
+          $("#ultimate_content").html(html).css('opacity', '1');
+          alert('Book deleted.');
+        },
+        error: function() {
+          alert('Error deleting book.');
         }
       });
     }

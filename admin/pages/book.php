@@ -17,6 +17,108 @@ if (isset($_SESSION['adminid'])) {
     exit(0);
 }
 
+if (isset($_POST['update_book'])) {
+    $bookid         = isset($_POST['bookid']) ? $_POST['bookid'] : '';
+    $title          = isset($_POST['title']) ? $_POST['title'] : '';
+    $genreid        = isset($_POST['genreid']) ? $_POST['genreid'] : '0';
+    $authorid       = isset($_POST['authorid']) ? $_POST['authorid'] : '0';
+    $description    = isset($_POST['description']) ? $_POST['description'] : '';
+    $published_date = isset($_POST['published_date']) ? $_POST['published_date'] : '';
+    $publisher      = isset($_POST['publisher']) ? $_POST['publisher'] : '';
+    $rating         = isset($_POST['rating']) ? $_POST['rating'] : '';
+    $review_count   = isset($_POST['review_count']) ? $_POST['review_count'] : '';
+    $pages          = isset($_POST['pages']) ? $_POST['pages'] : '';
+
+    if ($bookid !== '' && $title !== '' && $genreid !== '0') {
+        $authorid_sql     = ($authorid === '' || $authorid === '0') ? "NULL" : "'" . $authorid . "'";
+        $pages_sql        = ($pages === '' ? "NULL" : (string) (int) $pages);
+        $review_count_sql = ($review_count === '' ? "NULL" : (string) (int) $review_count);
+
+        if ($rating === '') {
+            $rating_sql = "NULL";
+        } else {
+            $r = (float)$rating;
+            if ($r < 0) $r = 0;
+            if ($r > 9.9) $r = 9.9;
+            $rating_sql = "'" . number_format($r, 1, '.', '') . "'";
+        }
+
+        $published_date_sql = ($published_date === '' ? "NULL" : "'" . $published_date . "'");
+
+        $sql = "
+      UPDATE tblbooks SET
+        genreid = '$genreid',
+        title = '$title',
+        authorid = $authorid_sql,
+        description = '$description',
+        published_date = $published_date_sql,
+        pages = $pages_sql,
+        publisher = '$publisher',
+        rating = $rating_sql,
+        review_count = $review_count_sql
+      WHERE id = '$bookid'
+    ";
+        mysqli_query($db_connection, $sql);
+    }
+}
+
+/* DELETE BOOK */
+if (isset($_POST['delete_book'])) {
+    $bookid = isset($_POST['bookid']) ? $_POST['bookid'] : '';
+    if ($bookid !== '') {
+        mysqli_query($db_connection, "DELETE FROM tblbooks WHERE id = '$bookid'");
+    }
+}
+
+
+
+if (isset($_POST['add_book'])) {
+    $title          = isset($_POST['title']) ? $_POST['title'] : '';
+    $genreid        = isset($_POST['genreid']) ? $_POST['genreid'] : '0';
+    $authorid       = isset($_POST['authorid']) ? $_POST['authorid'] : '0';
+    $description    = isset($_POST['description']) ? $_POST['description'] : '';
+    $published_date = isset($_POST['published_date']) ? $_POST['published_date'] : ''; // 'YYYY-MM-DD' or ''
+    $publisher      = isset($_POST['publisher']) ? $_POST['publisher'] : '';
+    $rating         = isset($_POST['rating']) ? $_POST['rating'] : '';
+    $review_count   = isset($_POST['review_count']) ? $_POST['review_count'] : '';
+    $pages          = isset($_POST['pages']) ? $_POST['pages'] : '';
+    $isbn = GenerateRandomString(10);
+
+    if ($title !== '' && $genreid !== '0') {
+        // normalize numeric/nullable values
+        $authorid_sql     = ($authorid === '' || $authorid === '0') ? "NULL" : "'" . $authorid . "'";
+        $pages_sql        = ($pages === '' ? "NULL" : (string) (int) $pages);
+        $review_count_sql = ($review_count === '' ? "NULL" : (string) (int) $review_count);
+
+        // rating DECIMAL(2,1) -> allow up to 9.9; if empty => NULL
+        if ($rating === '') {
+            $rating_sql = "NULL";
+        } else {
+            $r = (float)$rating;
+            if ($r < 0) $r = 0;
+            if ($r > 9.9) $r = 9.9;
+            // keep one decimal place
+            $rating_sql = "'" . number_format($r, 1, '.', '') . "'";
+        }
+
+        // date or NULL
+        $published_date_sql = ($published_date === '' ? "NULL" : "'" . $published_date . "'");
+
+        // Build INSERT (keeping your minimal style; no escaping)
+        $sql = "
+      INSERT INTO tblbooks
+        (genreid, title, authorid, description, published_date, pages, publisher, rating, review_count, isbn)
+      VALUES
+        ('$genreid', '$title', $authorid_sql, '$description', $published_date_sql, $pages_sql, '$publisher', $rating_sql, $review_count_sql, '$isbn')
+    ";
+
+        mysqli_query($db_connection, $sql);
+    }
+
+    // After insert, fall through to your SELECT and render the refreshed list.
+}
+
+
 /*
   JOIN map:
   - a = tblgenres         (a.category_id -> b.catid)
@@ -50,27 +152,6 @@ $result = mysqli_query(
     JOIN tblauthors d    ON d.authorid = c.authorid
     ORDER BY c.created_at DESC"
 );
-
-
-/* ADD BOOK (minimal: title + genreid required) */
-if (isset($_POST['add_book'])) {
-    $title   = isset($_POST['title']) ? $_POST['title'] : '';
-    $genreid = isset($_POST['genreid']) ? $_POST['genreid'] : '0';
-    $authorid = isset($_POST['authorid']) ? $_POST['authorid'] : '0';
-
-    // minimal guard (you said to keep it simple)
-    if ($title !== '' && $genreid !== '0') {
-        // Adjust table name if yours differs (assumed "tblbooks")
-        mysqli_query(
-            $db_connection,
-            "INSERT INTO tblbooks (title, genreid, authorid) VALUES ('$title', '$genreid', '$authorid')"
-        );
-    }
-
-    // After insert, you typically re-run your SELECT and render the table below.
-    // No redirect needed because your JS replaces #ultimate_content with this page's HTML.
-}
-
 ?>
 
 
@@ -81,41 +162,62 @@ if (isset($_GET['bookid_get'])) {
     $genreid_ = GetValue('select genreid from tblbooks where id=' . $_GET['bookid_get']);
     $title_ = GetValue('select title from tblbooks where id=' . $_GET['bookid_get']);
     $authorid_ = GetValue('select authorid from tblbooks where id=' . $_GET['bookid_get']);
+
+    $descrpition_ = GetValue('select description from tblbooks where id=' . $_GET['bookid_get']);
+    $published_date_ = GetValue('select published_date from tblbooks where id=' . $_GET['bookid_get']);
+    $publisher_ = GetValue('select publisher from tblbooks where id=' . $_GET['bookid_get']);
+    $rating_ = GetValue('select rating from tblbooks where id=' . $_GET['bookid_get']);
+    $review_count_ = GetValue('select review_count from tblbooks where id=' . $_GET['bookid_get']);
+    $pages_ = GetValue('select pages from tblbooks where id=' . $_GET['bookid_get']);
 } else {
     $authorid_ = 0;
     $genreid_ = 0;
     $title_ = '';
 }
 ?>
-<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-    <h1 style="color:#1e40ae; font-family:Arial, sans-serif; font-size:25px; margin:0;">Books by Genre &amp; Category</h1>
+<style>
+  .form-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:12px;flex-wrap:wrap}
+  .form-title{color:#1e40ae;font-family:Arial,sans-serif;font-size:25px;margin:0}
+  .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 12px;align-items:end}
+  .form-field{display:flex;flex-direction:column;gap:4px;min-width:200px}
+  .form-field label{font-size:12px;font-family:Arial;color:#111827}
+  .form-field input,.form-field select{padding:6px 8px;font-size:12px;border:1px solid #ccc;border-radius:4px}
+  .form-actions{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end}
+  .btn{background:#1e40ae;color:#fff;padding:6px 12px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold;display:inline-block;border:none;cursor:pointer}
+</style>
 
-    <!-- Inline add form (AJAX) -->
-    <form onsubmit="return false;" style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-        <label style="font-size:12px; font-family:Arial;">Title:</label>
-        <input type="text" id="title" value="<?php echo $title_; ?>" required
-            style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
+<div class="form-header">
+    <h1 class="form-title">Books by Genre &amp; Category</h1>
+</div>
 
-        <label style="font-size:12px; font-family:Arial;">Category/Genre:</label>
-        <select id="genreid" style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
-            <option value="0" style="color: gray">Select Category</option>
+<form onsubmit="return false;" class="form-grid">
+    <div class="form-field">
+        <label for="title">Title:</label>
+        <input type="text" id="title" value="<?php echo $title_; ?>" required>
+    </div>
+
+    <div class="form-field">
+        <label for="genreid">Category/Genre:</label>
+        <select id="genreid">
+            <option value="0" style="color:gray">Select Category</option>
             <?php
-            $cats = mysqli_query($db_connection, "SELECT a.genreid, a.name, b.name as catname from tblgenres a, tblcategories b where a.category_id=b.catid  ORDER BY name");
+            $cats = mysqli_query($db_connection, "SELECT a.genreid, a.name, b.name as catname FROM tblgenres a, tblcategories b WHERE a.category_id=b.catid ORDER BY a.name");
             while ($c = mysqli_fetch_assoc($cats)) {
                 $selected = ($genreid_ == $c['genreid']) ? 'selected' : '';
             ?>
                 <option value="<?php echo $c['genreid']; ?>" <?php echo $selected; ?>>
-                    Genre:&nbsp;<?php echo htmlspecialchars($c['name']); ?>&nbsp;&nbsp; (
-                    <?php echo htmlspecialchars($c['catname']); ?> )
+                    Genre: <?php echo htmlspecialchars($c['name']); ?> (<?php echo htmlspecialchars($c['catname']); ?>)
                 </option>
             <?php } ?>
         </select>
+    </div>
 
-        <label style="font-size:12px; font-family:Arial;">Author:</label>
-        <select id="authorid" style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
-            <option value="0" style="color: gray">Select Author</option>
+    <div class="form-field">
+        <label for="authorid">Author:</label>
+        <select id="authorid">
+            <option value="0" style="color:gray">Select Author</option>
             <?php
-            $catss = mysqli_query($db_connection, "SELECT authorid, author_name from tblauthors ORDER BY author_name");
+            $catss = mysqli_query($db_connection, "SELECT authorid, author_name FROM tblauthors ORDER BY author_name");
             while ($cc = mysqli_fetch_assoc($catss)) {
                 $selected = ($authorid_ == $cc['authorid']) ? 'selected' : '';
             ?>
@@ -124,46 +226,47 @@ if (isset($_GET['bookid_get'])) {
                 </option>
             <?php } ?>
         </select>
+    </div>
 
+    <div class="form-field">
+        <label for="published_date">Published Date:</label>
+        <input type="date" id="published_date" value="<?php echo $published_date_; ?>">
+    </div>
 
+    <div class="form-field" style="grid-column:1/-1">
+        <label for="description">Description:</label>
+        <!-- renamed to id="description" (your JS already supports this); keep your PHP var -->
+        <input type="text" id="description" value="<?php echo $descrpition_; ?>">
+    </div>
 
-        <label style="font-size:12px; font-family:Arial;">Description:</label>
-        <input type="text" id="descrpition" value="<?php echo $descrpition_; ?>" required
-            style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
+    <div class="form-field">
+        <label for="publisher">Publisher:</label>
+        <input type="text" id="publisher" value="<?php echo $publisher_; ?>">
+    </div>
 
-        <label style="font-size:12px; font-family:Arial;">Published Date:</label>
-        <input type="date" id="published_date" value="<?php echo $published_date_; ?>" required
-            style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
+    <div class="form-field">
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" step="0.1" min="0" max="9.9" value="<?php echo $rating_; ?>">
+    </div>
 
-        <label style="font-size:12px; font-family:Arial;">Publisher:</label>
-        <input type="text" id="publisher" value="<?php echo $publisher_; ?>" required
-            style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
+    <div class="form-field">
+        <label for="review_count">Review Count:</label>
+        <input type="number" id="review_count" min="0" value="<?php echo $review_count_; ?>">
+    </div>
 
-        <label style="font-size:12px; font-family:Arial;">Rating:</label>
-        <input type="text" id="rating" value="<?php echo $rating_; ?>" required
-            style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
+    <div class="form-field">
+        <label for="pages">Pages:</label>
+        <input type="number" id="pages" min="1" value="<?php echo $pages_; ?>">
+    </div>
 
-        <label style="font-size:12px; font-family:Arial;">Review Count:</label>
-        <input type="text" id="review_count" value="<?php echo $review_count_; ?>" required
-            style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
-
-
-        <label style="font-size:12px; font-family:Arial;">Pages:</label>
-        <input type="text" id="pages" value="<?php echo $pages_; ?>" required
-            style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
-
+    <div class="form-actions">
         <?php if (isset($_GET['bookid_get'])): ?>
-            <a onclick="update_book(<?php echo (int)$_GET['bookid_get']; ?>);"
-                style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;">
-                + Update
-            </a>
+            <a class="btn" onclick="update_book(<?php echo (int)$_GET['bookid_get']; ?>);">+ Update</a>
         <?php else: ?>
-            <a onclick="add_book();"
-                style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;">
-                + Add
-            </a>
+            <a class="btn" onclick="add_book();">+ Add</a>
         <?php endif; ?>
-</div>
+    </div>
+</form>
 
 <div style="width:100%; overflow-x:auto;">
     <table style="font-size:11px; min-width:700px; width:100%; border-collapse:collapse; margin-top:10px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.05); font-family:Arial, sans-serif;">
@@ -191,18 +294,21 @@ if (isset($_GET['bookid_get'])) {
                                 style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; margin-right:6px; display:inline-block;">
                                 Upload Photo
                             </a>
-                            <a href="view_book.php?id=<?php echo $row['book_id']; ?>"
+                            <a href="javascript:void(0)"
+                                onclick="openCustom('pages/book_view.php?bbbb=<?php echo $row['book_id']; ?>',700,400);"
                                 style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; margin-right:6px; display:inline-block;">
                                 View
                             </a>
+
                             <a href="javascript:void(0)" onclick="ajax_fn('pages/book.php?bookid_get=<?php echo $row['book_id']; ?>', 'ultimate_content')"
                                 style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; margin-right:6px; display:inline-block;">
                                 Edit
                             </a>
-                            <a href="delete_book.php?id=<?php echo $row['book_id']; ?>"
+                            <a href="javascript:void(0)" onclick="delete_book(<?php echo $row['book_id']; ?>)"
                                 style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; display:inline-block;">
                                 Delete
                             </a>
+
                         </td>
                     </tr>
                 <?php endwhile; ?>
