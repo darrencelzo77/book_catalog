@@ -21,14 +21,384 @@ if (isset($_SESSION['adminid'])) {
 <html lang="en">
 
 <head>
-  <title>Sidebar 01</title>
+  <title>Book MS</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style2.css">
+
+
+  <script>
+    function ajax_fn(url, elementId) {
+      if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          document.getElementById(elementId).innerHTML = "";
+          document.getElementById(elementId).innerHTML = xmlhttp.responseText;
+        }
+      }
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    }
+
+
+    function add_author() {
+      var author_name = document.getElementById('author_name').value.trim();
+      var details = document.getElementById('details').value.trim();
+
+      // Simple required check (kept minimal as requested)
+      if (!author_name) {
+        alert("Please enter an Author Name.");
+        return;
+      }
+
+      let myForm = new FormData();
+      myForm.append('author_name', author_name);
+      myForm.append('details', details);
+      myForm.append('add', 1);
+
+      if (confirm("Are you sure you want to add this Author?")) {
+        $.ajax({
+          url: 'pages/author.php', // make sure this path matches your file location
+          type: "POST",
+          data: myForm,
+          contentType: false,
+          processData: false,
+          success: function(data) {
+            $("#ultimate_content").html(data).css('opacity', '1');
+            alert("Successfully processed request.");
+
+            // Optional: clear inputs (only if the form stays on the page after reload)
+            var a = document.getElementById('author_name');
+            var d = document.getElementById('details');
+            if (a) a.value = "";
+            if (d) d.value = "";
+          },
+          error: function() {
+            alert("Error processing request.");
+          }
+        });
+      } else {
+        alert("Operation cancelled.");
+      }
+    }
+
+    function delete_author(authorid) {
+      if (confirm("Are you sure you want to delete this Author?")) {
+        let myForm = new FormData();
+        myForm.append('authorid', authorid);
+        myForm.append('delete', 1);
+
+        $.ajax({
+          url: 'pages/author.php',
+          type: "POST",
+          data: myForm,
+          contentType: false,
+          processData: false,
+          success: function(data) {
+            $("#ultimate_content").html(data).css('opacity', '1');
+            alert("Author deleted successfully.");
+          },
+          error: function() {
+            alert("Error processing request.");
+          }
+        });
+      }
+    }
+
+    function update_author(authorid) {
+      var newName = prompt("Enter new Author Name:");
+      if (!newName) return;
+
+      var newDetails = prompt("Enter new Details:");
+      if (newDetails === null) newDetails = "";
+
+      let myForm = new FormData();
+      myForm.append('authorid', authorid);
+      myForm.append('author_name', newName);
+      myForm.append('details', newDetails);
+      myForm.append('update', 1);
+
+      if (confirm("Are you sure you want to update this Author?")) {
+        $.ajax({
+          url: 'pages/author.php',
+          type: "POST",
+          data: myForm,
+          contentType: false,
+          processData: false,
+          success: function(data) {
+            $("#ultimate_content").html(data).css('opacity', '1');
+            alert("Author updated successfully.");
+          },
+          error: function() {
+            alert("Error processing request.");
+          }
+        });
+      }
+    }
+
+
+    function add_category() {
+      var name = (document.getElementById('category_name')?.value || '').trim();
+      if (!name) {
+        alert('Please enter a Category name.');
+        return;
+      }
+
+      if (!confirm('Add this category?')) return;
+
+      var form = new FormData();
+      form.append('add_cat', 1);
+      form.append('name', name);
+
+      $.ajax({
+        url: 'pages/category.php', // adjust path to this file
+        type: 'POST',
+        data: form,
+        contentType: false,
+        processData: false,
+        success: function(html) {
+          $("#ultimate_content").html(html).css('opacity', '1');
+          alert('Category added.');
+        },
+        error: function() {
+          alert('Error adding category.');
+        }
+      });
+    }
+
+    function delete_category(catid) {
+      if (!catid) return;
+      if (!confirm('Delete this category?')) return;
+
+      var form = new FormData();
+      form.append('delete_cat', 1);
+      form.append('catid', catid);
+
+      $.ajax({
+        url: 'pages/category.php',
+        type: 'POST',
+        data: form,
+        contentType: false,
+        processData: false,
+        success: function(html) {
+          $("#ultimate_content").html(html).css('opacity', '1');
+          alert('Category deleted.');
+        },
+        error: function() {
+          alert('Error deleting category.');
+        }
+      });
+    }
+
+    function update_category(catid) {
+      if (!catid) return;
+
+      // Read current value from the row
+      var row = document.querySelector('tr[data-cat-id="' + catid + '"]');
+      var currentName = row ? (row.querySelector('.cell-name')?.textContent || '').trim() : '';
+
+      var newName = prompt('Update Category Name:', currentName);
+      if (newName === null) return; // cancelled
+      newName = newName.trim();
+      if (!newName) {
+        alert('Category name cannot be empty.');
+        return;
+      }
+
+      var form = new FormData();
+      form.append('update_cat', 1);
+      form.append('catid', catid);
+      form.append('name', newName);
+
+      $.ajax({
+        url: 'pages/category.php',
+        type: 'POST',
+        data: form,
+        contentType: false,
+        processData: false,
+        success: function(html) {
+          $("#ultimate_content").html(html).css('opacity', '1');
+          alert('Category updated.');
+        },
+        error: function() {
+          alert('Error updating category.');
+        }
+      });
+    }
+
+
+
+
+    function add_genre() {
+      var name = (document.getElementById('genre_name')?.value || '').trim();
+      var catid = document.getElementById('catid')?.value || '0';
+
+      if (!name) {
+        alert('Please enter a Genre name.');
+        return;
+      }
+      if (catid === '0') {
+        alert('Please select a Category.');
+        return;
+      }
+      if (!confirm('Add this genre?')) return;
+
+      var form = new FormData();
+      form.append('add_genre', 1);
+      form.append('name', name);
+      form.append('category_id', catid);
+
+      $.ajax({
+        url: 'pages/genre.php', // adjust to where this PHP lives
+        type: 'POST',
+        data: form,
+        contentType: false,
+        processData: false,
+        success: function(html) {
+          $("#ultimate_content").html(html).css('opacity', '1');
+          alert('Genre added.');
+        },
+        error: function() {
+          alert('Error adding genre.');
+        }
+      });
+    }
+
+    function delete_genre(genreid) {
+      if (!genreid) return;
+      if (!confirm('Delete this genre?')) return;
+
+      var form = new FormData();
+      form.append('delete_genre', 1);
+      form.append('genreid', genreid);
+
+      $.ajax({
+        url: 'pages/genre.php',
+        type: 'POST',
+        data: form,
+        contentType: false,
+        processData: false,
+        success: function(html) {
+          $("#ultimate_content").html(html).css('opacity', '1');
+          alert('Genre deleted.');
+        },
+        error: function() {
+          alert('Error deleting genre.');
+        }
+      });
+    }
+
+    function update_genre(genreid) {
+      var name = (document.getElementById('genre_name')?.value || '').trim();
+      var catid = document.getElementById('catid')?.value || '0';
+
+      if (!name) {
+        alert('Please enter a Genre name.');
+        return;
+      }
+      if (catid === '0') {
+        alert('Please select a Category.');
+        return;
+      }
+      if (!confirm('Update this genre?')) return;
+
+      var form = new FormData();
+      form.append('name', name);
+      form.append('category_id', catid);
+      form.append('update_genre', genreid);
+
+      $.ajax({
+        url: 'pages/genre.php', // adjust to where this PHP lives
+        type: 'POST',
+        data: form,
+        contentType: false,
+        processData: false,
+        success: function(html) {
+          $("#ultimate_content").html(html).css('opacity', '1');
+          alert('Genre updated.');
+        },
+        error: function() {
+          alert('Error adding genre.');
+        }
+      });
+    }
+
+
+
+
+
+
+
+    function add_book() {
+      var title = (document.getElementById('title')?.value || '').trim();
+      var genreid = document.getElementById('genreid')?.value || '0';
+      var authorid = document.getElementById('authorid')?.value || '0';
+
+      if (!title) {
+        alert('Please enter a Title.');
+        return;
+      }
+      if (genreid === '0') {
+        alert('Please select a Genre.');
+        return;
+      }
+      if (!confirm('Add this book?')) return;
+
+      var form = new FormData();
+      form.append('add_book', 1);
+      form.append('title', title);
+      form.append('genreid', genreid);
+      form.append('authorid', authorid);
+
+      $.ajax({
+        url: 'pages/book.php', // <-- adjust if this file lives elsewhere
+        type: 'POST',
+        data: form,
+        contentType: false,
+        processData: false,
+        success: function(html) {
+          $("#ultimate_content").html(html).css('opacity', '1');
+          alert('Book added.');
+        },
+        error: function() {
+          alert('Error adding book.');
+        }
+      });
+    }
+
+    function delete_book(genreid) {
+      if (!genreid) return;
+      if (!confirm('Delete this genre?')) return;
+
+      var form = new FormData();
+      form.append('delete_genre', 1);
+      form.append('genreid', genreid);
+
+      $.ajax({
+        url: 'pages/genre.php',
+        type: 'POST',
+        data: form,
+        contentType: false,
+        processData: false,
+        success: function(html) {
+          $("#ultimate_content").html(html).css('opacity', '1');
+          alert('Genre deleted.');
+        },
+        error: function() {
+          alert('Error deleting genre.');
+        }
+      });
+    }
+  </script>
 </head>
 
 <body>
@@ -36,13 +406,13 @@ if (isset($_SESSION['adminid'])) {
   <div class="wrapper d-flex align-items-stretch">
     <nav id="sidebar">
       <div class="p-4 pt-5">
-        <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.jpg);"></a>
+        <a href="#" class="img logo rounded-circle mb-5" style="visibility:hidden; background-image: url(images/logo.jpg);"></a>
         <ul class="list-unstyled components mb-5">
-          <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+          <!-- <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Books</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
               <li>
-                <a href="#">Home 1</a>
+                <a href="#">Genre</a>
               </li>
               <li>
                 <a href="#">Home 2</a>
@@ -51,40 +421,20 @@ if (isset($_SESSION['adminid'])) {
                 <a href="#">Home 3</a>
               </li>
             </ul>
+          </li> -->
+          <li>
+            <a onclick="ajax_fn('pages/author.php','ultimate_content');" href="javascript:void();">Author</a>
           </li>
           <li>
-            <a href="#">About</a>
+            <a onclick="ajax_fn('pages/category.php','ultimate_content');" href="javascript:void();">Category</a>
           </li>
           <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-              <li>
-                <a href="#">Page 1</a>
-              </li>
-              <li>
-                <a href="#">Page 2</a>
-              </li>
-              <li>
-                <a href="#">Page 3</a>
-              </li>
-            </ul>
-          </li>
+            <a onclick="ajax_fn('pages/genre.php','ultimate_content');" href="javascript:void();">Genre</a>
           <li>
-            <a href="#">Portfolio</a>
+            <a onclick="ajax_fn('pages/book.php','ultimate_content');" href="javascript:void();">Books</a>
           </li>
-          <li>
-            <a href="#">Contact</a>
           </li>
         </ul>
-
-        <div class="footer">
-          <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>
-              document.write(new Date().getFullYear());
-            </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-        </div>
-
       </div>
     </nav>
 
@@ -111,14 +461,14 @@ if (isset($_SESSION['adminid'])) {
           </div>
         </div>
       </nav>
-
-      <h2 class="mb-4">Sidebar #01</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <div id="ultimate_content">
+        <h2 class="mb-4">Welcome Back Admin!</h2>
+        <p>This is Book Management System.</p>
+      </div>
     </div>
   </div>
 
-  <script src="js/jquery.min.js"></script>
+  <!-- <script src="js/jquery.min.js"></script> -->
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
