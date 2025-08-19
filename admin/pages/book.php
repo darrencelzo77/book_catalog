@@ -176,14 +176,69 @@ if (isset($_GET['bookid_get'])) {
 }
 ?>
 <style>
-  .form-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:12px;flex-wrap:wrap}
-  .form-title{color:#1e40ae;font-family:Arial,sans-serif;font-size:25px;margin:0}
-  .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 12px;align-items:end}
-  .form-field{display:flex;flex-direction:column;gap:4px;min-width:200px}
-  .form-field label{font-size:12px;font-family:Arial;color:#111827}
-  .form-field input,.form-field select{padding:6px 8px;font-size:12px;border:1px solid #ccc;border-radius:4px}
-  .form-actions{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end}
-  .btn{background:#1e40ae;color:#fff;padding:6px 12px;border-radius:4px;text-decoration:none;font-size:12px;font-weight:bold;display:inline-block;border:none;cursor:pointer}
+    .form-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        gap: 12px;
+        flex-wrap: wrap
+    }
+
+    .form-title {
+        color: #1e40ae;
+        font-family: Arial, sans-serif;
+        font-size: 25px;
+        margin: 0
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 10px 12px;
+        align-items: end
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 200px
+    }
+
+    .form-field label {
+        font-size: 12px;
+        font-family: Arial;
+        color: #111827
+    }
+
+    .form-field input,
+    .form-field select {
+        padding: 6px 8px;
+        font-size: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px
+    }
+
+    .form-actions {
+        grid-column: 1/-1;
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end
+    }
+
+    .btn {
+        background: #1e40ae;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: bold;
+        display: inline-block;
+        border: none;
+        cursor: pointer
+    }
 </style>
 
 <div class="form-header">
@@ -268,6 +323,7 @@ if (isset($_GET['bookid_get'])) {
     </div>
 </form>
 
+
 <div style="width:100%; overflow-x:auto;">
     <table style="font-size:11px; min-width:700px; width:100%; border-collapse:collapse; margin-top:10px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.05); font-family:Arial, sans-serif;">
         <thead style="background:#1e40ae; color:#fff;">
@@ -290,10 +346,13 @@ if (isset($_GET['bookid_get'])) {
                         <td style="padding:8px 10px;"><?php echo $row['genre_name']; ?></td>
                         <td style="padding:8px 10px;"><?php echo $row['catname']; ?></td>
                         <td style="padding:8px 10px;">
-                            <a href="upload_photo.php?id=<?php echo $row['book_id']; ?>"
-                                style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; margin-right:6px; display:inline-block;">
-                                Upload Photo
-                            </a>
+                            <form method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="book_id" value="<?php echo $row['book_id']; ?>" />
+                                <input type="file"
+                                    name="picture_url"
+                                    id="picture_url_<?php echo $row['book_id']; ?>"
+                                    onchange="uploadBookImage(this)" />
+                            </form>
                             <a href="javascript:void(0)"
                                 onclick="openCustom('pages/book_view.php?bbbb=<?php echo $row['book_id']; ?>',700,400);"
                                 style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; margin-right:6px; display:inline-block;">

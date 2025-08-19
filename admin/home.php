@@ -544,6 +544,45 @@ if (isset($_SESSION['adminid'])) {
       });
     }
   </script>
+  <script>
+    function uploadBookImage(input) {
+      const form = input.closest('form');
+      const formData = new FormData(form);
+
+      fetch('pages/book_upload.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.text())
+        .then(result => {
+          alert(result);
+          ajax_fn('pages/book.php', 'ultimate_content');
+        })
+        .catch(error => {
+          alert('Upload failed.');
+          console.error(error);
+        });
+    }
+
+    function uploadBookImageAuthor(input) {
+      const form = input.closest('form');
+      const formData = new FormData(form);
+
+      fetch('pages/author_upload.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.text())
+        .then(result => {
+          alert(result);
+          ajax_fn('pages/author.php', 'ultimate_content');
+        })
+        .catch(error => {
+          alert('Upload failed.');
+          console.error(error);
+        });
+    }
+  </script>
 </head>
 
 <body>

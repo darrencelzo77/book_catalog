@@ -79,6 +79,13 @@ $result = mysqli_query($db_connection, "SELECT authorid, author_name, details FR
           <td style="padding:8px 10px;"><?php echo $row['author_name']; ?></td>
           <td style="padding:8px 10px;"><?php echo $row['details']; ?></td>
           <td style="padding:8px 10px;">
+            <form method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="authorid" value="<?php echo $row['authorid']; ?>" />
+              <input type="file"
+                name="picture_url"
+                id="picture_url_<?php echo $row['authorid']; ?>"
+                onchange="uploadBookImageAuthor(this)" />
+            </form>
             <a href="javascript:void();" onclick="update_author(<?php echo $row['authorid']; ?>);"
               style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; margin-right:6px; display:inline-block;">
               Edit
