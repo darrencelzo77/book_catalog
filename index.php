@@ -913,7 +913,7 @@ body {
                         <a class="nav-link active" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/book-catalog.html">Book Catalog</a>
+                        <a class="nav-link" href="pages/book-catalog">Book Catalog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="pages/services.html">Services</a>
