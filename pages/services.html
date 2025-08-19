@@ -1,0 +1,399 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Scriptify.US</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --primary-dark: #0b5ed7;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        .navbar {
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 8px 15px !important;
+            color: #333 !important;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+        
+        .navbar-nav {
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .get-started-btn {
+            position: absolute;
+            right: 15px;
+        }
+
+        /* Publishing Services Styling */
+.publishing-services {
+    background-color: #f8fafc;
+}
+
+.service-card {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.service-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.service-features {
+    list-style: none;
+    padding-left: 0;
+    margin: 20px 0;
+}
+
+.service-features li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.service-price {
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+/* Animation Delays */
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.3s; }
+
+/* Ensure Poppins font is used */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Blue color scheme */
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0b5ed7;
+}
+
+.text-primary {
+    color: #0d6efd !important;
+}
+
+        </style>
+ 
+ <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container position-relative">
+            <a class="navbar-brand" href="#">SCRIPTIFY.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="book-catalog.html">Book Catalog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="plans.html">Plans</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="authors.html">Authors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="submissions.html">Submission</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacts.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="get-started-btn">
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Publishing Services Section -->
+<section class="publishing-services py-5">
+    <div class="container">
+        <h1 class="text-center mb-3"><b>Publishing Services</h1></b>
+        <p class="text-center mb-5 mx-auto" style="max-width: 700px;">Comprehensive publishing solutions to bring your book to life and connect with readers worldwide.</p>
+        
+        <div class="row g-4">
+            <!-- Book Publishing -->
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card h-100 animate__animated animate__fadeInUp">
+                    <div class="service-icon bg-primary bg-opacity-10 text-primary">
+                        <i class="bi bi-book"></i>
+                    </div>
+                    <h3 class="mt-4">Book Publishing</h3>
+                    <p>Complete publishing services from manuscripts to market-ready books.</p>
+                    <ul class="service-features">
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Professional editing</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> ISBN registration</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Print & digital formats</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Quality assurance</li>
+                    </ul>
+                    <div class="service-price mt-auto">
+                        <p class="mb-2">Starting at <span class="fw-bold">$2,999</span></p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Marketing & Promotion -->
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card h-100 animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="service-icon bg-primary bg-opacity-10 text-primary">
+                        <i class="bi bi-megaphone"></i>
+                    </div>
+                    <h3 class="mt-4">Marketing & Promotion</h3>
+                    <p>Strategic marketing campaigns to boost your book's visibility.</p>
+                    <ul class="service-features">
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Social media campaign</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Press releases</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Book reviews</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Author platform building</li>
+                    </ul>
+                    <div class="service-price mt-auto">
+                        <p class="mb-2">Starting at <span class="fw-bold">$599</span></p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Editorial Services -->
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card h-100 animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="service-icon bg-primary bg-opacity-10 text-primary">
+                        <i class="bi bi-pencil-square"></i>
+                    </div>
+                    <h3 class="mt-4">Editorial Services</h3>
+                    <p>Professional editing and proofreading to polish your manuscript.</p>
+                    <ul class="service-features">
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Developmental editing</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Copy editing</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Proofreading</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Style guide compliance</li>
+                    </ul>
+                    <div class="service-price mt-auto">
+                        <p class="mb-2">Starting at <span class="fw-bold">$599</span></p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Distribution -->
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card h-100 animate__animated animate__fadeInUp">
+                    <div class="service-icon bg-primary bg-opacity-10 text-primary">
+                        <i class="bi bi-globe"></i>
+                    </div>
+                    <h3 class="mt-4">Distribution</h3>
+                    <p>Worldwide distribution network to get your book into readers' hands.</p>
+                    <ul class="service-features">
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Global distribution</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Online retailers</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Store placement</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Library networks</li>
+                    </ul>
+                    <div class="service-price mt-auto">
+                        <p class="mb-2">Starting at <span class="fw-bold">$599</span></p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cover Design -->
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card h-100 animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="service-icon bg-primary bg-opacity-10 text-primary">
+                        <i class="bi bi-palette"></i>
+                    </div>
+                    <h3 class="mt-4">Cover Design</h3>
+                    <p>Eye-catching book covers that attract readers and reflect your content.</p>
+                    <ul class="service-features">
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Custom illustrations</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Typography design</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Print & digital versions</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Multiple concepts</li>
+                    </ul>
+                    <div class="service-price mt-auto">
+                        <p class="mb-2">Starting at <span class="fw-bold">$399</span></p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Author Support -->
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card h-100 animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="service-icon bg-primary bg-opacity-10 text-primary">
+                        <i class="bi bi-headset"></i>
+                    </div>
+                    <h3 class="mt-4">Author Support</h3>
+                    <p>Ongoing support and guidance throughout your publishing journey.</p>
+                    <ul class="service-features">
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Personal publishing advisor</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> 24/7 support</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Author resources</li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Community access</li>
+                    </ul>
+                    <div class="service-price mt-auto">
+                        <p class="mb-2 fw-bold">Included with all plans</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div class="process-cta text-center mt-5 animate__animated animate__fadeIn animate__delay-4s">
+            <h3 class="cta-title">Ready to Start Your Publishing Journey?</h3>
+            <p class="cta-subtitle">
+                Join hundreds of successful authors who trust us with their stories.
+            </p>
+            <a href="#" class="btn btn-primary mt-3">Get Your Free Quote</a>
+        </div>
+    </div>
+
+</section>
+
+<!-- Footer Section -->
+<footer class="bg-dark text-white pt-5 pb-4">
+    <div class="container">
+        <div class="row">
+            <!-- About Column -->
+            <div class="col-lg-4 mb-4">
+                <h4 class="text-uppercase mb-4">SCRIPTIFY.</h4>
+                <p class="mb-4">Helping authors showcase their awesome books to the world with professional publishing services.</p>
+                <address>
+                    <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i> 1915 5th Avenue</p>
+                    <p class="mb-1"> New York, NY 10001</p>
+                    <p><i class="bi bi-envelope-fill me-2"></i> info@scriptify.com</p>
+                </address>
+            </div>
+            
+            <!-- Services Column -->
+            <div class="col-md-4 col-lg-2 mb-4">
+                <h4 class="text-uppercase mb-4">Services</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Book Publishing</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Editorial Services</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Cover Design</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Marketing</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Distribution</a></li>
+                </ul>
+            </div>
+            
+            <!-- Resources Column -->
+            <div class="col-md-4 col-lg-2 mb-4">
+                <h4 class="text-uppercase mb-4">Resources</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Book Catalog</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Author Profiles</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Submission Guidelines</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Publishing Plans</a></li>
+                </ul>
+            </div>
+            
+            <!-- Connect Column -->
+            <div class="col-md-4 col-lg-2 mb-4">
+                <h4 class="text-uppercase mb-4">Connect</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Newsletter</a></li>
+                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Blog</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Support</a></li>
+                </ul>
+            </div>
+            
+            <!-- Social Media Column -->
+            <div class="col-lg-2 mb-4">
+                <h4 class="text-uppercase mb-4">Follow Us</h4>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-white fs-5"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="my-4">
+        
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="mb-0">© 2025 Scriptify.US. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                <a href="#" class="text-white text-decoration-none me-3">Terms of Service</a>
+                <a href="#" class="text-white text-decoration-none">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+       
+        document.addEventListener('DOMContentLoaded', function() {
+        
+        });
+    </script>
+</body>
+</html>
