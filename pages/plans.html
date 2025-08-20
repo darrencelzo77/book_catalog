@@ -1,12 +1,14 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plans - Scriptify.US</title>
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
@@ -14,213 +16,225 @@
             --primary: #0d6efd;
             --primary-dark: #0b5ed7;
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             color: #333;
             line-height: 1.6;
         }
-        
+
         /* Navigation */
         .navbar {
             padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         .navbar-brand {
             font-weight: 700;
             font-size: 1.5rem;
         }
-        
+
         .nav-link {
             font-weight: 500;
             padding: 8px 15px !important;
             color: #333 !important;
         }
-        
+
         .nav-link:hover {
             color: var(--primary) !important;
         }
-        
+
         .navbar-nav {
             margin: 0 auto;
             display: flex;
             justify-content: center;
         }
-        
+
         .get-started-btn {
             position: absolute;
             right: 15px;
         }
 
         /* Publishing Plans Styling */
-.publishing-plans {
-    background-color: #f8fafc;
-}
+        .publishing-plans {
+            background-color: #f8fafc;
+        }
 
-.plan-card {
-    background: white;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.05);
-    position: relative;
-    height: 100%;
-}
+        .plan-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            height: 100%;
+        }
 
-.plan-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-}
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
 
-.plan-header {
-    text-align: center;
-    margin-bottom: 20px;
-    position: relative;
-}
+        .plan-header {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
 
-.plan-title {
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: #212529;
-    margin-bottom: 0.5rem;
-}
+        .plan-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 0.5rem;
+        }
 
-.plan-price {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #0d6efd;
-    margin-bottom: 1rem;
-}
+        .plan-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
 
-.plan-description {
-    color: #6c757d;
-    text-align: center;
-    margin-bottom: 20px;
-}
+        .plan-description {
+            color: #6c757d;
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-.plan-features {
-    list-style: none;
-    padding-left: 0;
-    margin-bottom: 25px;
-}
+        .plan-features {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 25px;
+        }
 
-.plan-features li {
-    margin-bottom: 12px;
-    display: flex;
-    align-items: flex-start;
-}
+        .plan-features li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
 
-.plan-footer {
-    margin-top: auto;
-}
+        .plan-footer {
+            margin-top: auto;
+        }
 
-.popular-badge {
-    position: absolute;
-    top: -15px;
-    right: 20px;
-    background-color: #0d6efd;
-    color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-}
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background-color: #0d6efd;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
 
-/* Animation Delays */
-.animate-delay-1 { animation-delay: 0.1s; }
-.animate-delay-2 { animation-delay: 0.2s; }
+        /* Animation Delays */
+        .animate-delay-1 {
+            animation-delay: 0.1s;
+        }
 
-/* Ensure Poppins font is used */
-body {
-    font-family: 'Poppins', sans-serif;
-}
+        .animate-delay-2 {
+            animation-delay: 0.2s;
+        }
 
-/* Blue color scheme */
-.btn-primary {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
-}
+        /* Ensure Poppins font is used */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
 
-.btn-primary:hover {
-    background-color: #0b5ed7;
-    border-color: #0b5ed7;
-}
+        /* Blue color scheme */
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
 
-.btn-outline-primary {
-    color: #0d6efd;
-    border-color: #0d6efd;
-}
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+            border-color: #0b5ed7;
+        }
 
-.btn-outline-primary:hover {
-    background-color: #0d6efd;
-    color: white;
-}
+        .btn-outline-primary {
+            color: #0d6efd;
+            border-color: #0d6efd;
+        }
 
-.text-primary {
-    color: #0d6efd !important;
-}
+        .btn-outline-primary:hover {
+            background-color: #0d6efd;
+            color: white;
+        }
 
-/* Add-On Services Styling */
-.addon-services {
-    background-color: #f8f9fa;
-}
+        .text-primary {
+            color: #0d6efd !important;
+        }
 
-.addon-card {
-    background: white;
-    border-radius: 8px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.05);
-    height: 100%;
-}
+        /* Add-On Services Styling */
+        .addon-services {
+            background-color: #f8f9fa;
+        }
 
-.addon-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
+        .addon-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
 
-.addon-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #212529;
-    margin-bottom: 0.5rem;
-}
+        .addon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
 
-.addon-price {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #0d6efd;
-    margin-bottom: 1rem;
-}
+        .addon-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 0.5rem;
+        }
 
-.addon-description {
-    color: #6c757d;
-    margin-bottom: 1.5rem;
-}
+        .addon-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
 
-.custom-solution {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    border: 1px solid rgba(0,0,0,0.05);
-}
+        .addon-description {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+        }
 
-/* Animation Delays */
-.animate-delay-1 { animation-delay: 0.1s; }
-.animate-delay-2 { animation-delay: 0.2s; }
-.animate-delay-3 { animation-delay: 0.3s; }
+        .custom-solution {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
 
-        </style>
- 
- <!-- Navigation -->
+        /* Animation Delays */
+        .animate-delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .animate-delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-3 {
+            animation-delay: 0.3s;
+        }
+    </style>
+
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container position-relative">
             <a class="navbar-brand" href="#">SCRIPTIFY.</a>
@@ -230,10 +244,10 @@ body {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="../index.html">Home</a>
+                        <a class="nav-link active" href="../">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="book-catalog.html">Book Catalog</a>
+                        <a class="nav-link" href="book-catalog">Book Catalog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="services.html">Services</a>
@@ -242,7 +256,7 @@ body {
                         <a class="nav-link" href="plans.html">Plans</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="authors.html">Authors</a>
+                        <a class="nav-link" href="authors">Authors</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="submissions.html">Submission</a>
@@ -259,238 +273,263 @@ body {
     </nav>
 
     <!-- Publishing Plans Section -->
-<section class="publishing-plans py-5">
-    <div class="container">
-        <h1 class="text-center mb-3"><b>Publishing Plans</h1></b>
-        <p class="text-center mb-5 mx-auto" style="max-width: 700px;">Choose the perfect publishing package for your needs. All plans include professional support and quality assurance.</p>
-        
-        <div class="row g-4 justify-content-center">
-            <!-- Matter Plan -->
-            <div class="col-md-6 col-lg-4">
-                <div class="plan-card h-100 animate__animated animate__fadeInLeft">
-                    <div class="plan-header">
-                        <h3 class="plan-title">Matter</h3>
-                        <div class="plan-price">$1,999</div>
+    <section class="publishing-plans py-5">
+        <div class="container">
+            <h1 class="text-center mb-3"><b>Publishing Plans</h1></b>
+            <p class="text-center mb-5 mx-auto" style="max-width: 700px;">Choose the perfect publishing package for your
+                needs. All plans include professional support and quality assurance.</p>
+
+            <div class="row g-4 justify-content-center">
+                <!-- Matter Plan -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="plan-card h-100 animate__animated animate__fadeInLeft">
+                        <div class="plan-header">
+                            <h3 class="plan-title">Matter</h3>
+                            <div class="plan-price">$1,999</div>
+                        </div>
+                        <p class="plan-description">Perfect for first-time authors looking to publish their debut work.
+                        </p>
+                        <ul class="plan-features">
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Professional editing (up to
+                                80,000 words)</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Custom cover design</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> ISBN registration</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Print-on-demand setup</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Digital distribution (eBook)
+                            </li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Basic marketing package</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Author support for 6 months
+                            </li>
+                        </ul>
+                        <div class="plan-footer mt-auto">
+                            <a href="#" class="btn btn-outline-primary w-100">Choose Starter</a>
+                        </div>
                     </div>
-                    <p class="plan-description">Perfect for first-time authors looking to publish their debut work.</p>
-                    <ul class="plan-features">
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Professional editing (up to 80,000 words)</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Custom cover design</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> ISBN registration</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Print-on-demand setup</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Digital distribution (eBook)</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Basic marketing package</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Author support for 6 months</li>
+                </div>
+
+                <!-- Professional Plan (Most Popular) -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="plan-card h-100 animate__animated animate__fadeInUp">
+                        <div class="plan-header">
+                            <div class="popular-badge">Most Popular</div>
+                            <h3 class="plan-title">Professional</h3>
+                            <div class="plan-price">$3,999</div>
+                        </div>
+                        <p class="plan-description">Comprehensive publishing solution for serious authors.</p>
+                        <ul class="plan-features">
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Developmental & copy editing
+                                (unlimited words)</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Premium cover design with
+                                multiple concepts</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> ISBN & copyright registration
+                            </li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Print & digital publishing
+                            </li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Extended distribution network
+                            </li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Professional marketing
+                                campaign</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Author website creation</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Social media setup</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> 12 months author support</li>
+                        </ul>
+                        <div class="plan-footer mt-auto">
+                            <a href="#" class="btn btn-primary w-100">Choose Professional</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="plan-card h-100 animate__animated animate__fadeInRight">
+                        <div class="plan-header">
+                            <h3 class="plan-title">Premium</h3>
+                            <div class="plan-price">$7,999</div>
+                        </div>
+                        <p class="plan-description">Full-service publishing with maximum exposure and support.</p>
+                        <ul class="plan-features">
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Complete editorial package
+                            </li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Premium cover design &
+                                interior layout</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Hardcover & paperback printing
+                            </li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Global distribution network
+                            </li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Comprehensive marketing
+                                strategy</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Book trailer production</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Press release & media outreach
+                            </li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Author branding package</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Ongoing promotional support
+                            </li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Lifetime author support</li>
+                        </ul>
+                        <div class="plan-footer mt-auto">
+                            <a href="#" class="btn btn-outline-primary w-100">Choose Premium</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add-On Services Section -->
+    <section class="addon-services py-5 bg-light">
+        <div class="container">
+            <h1 class="text-center mb-5">Add-On Services</h1>
+
+            <div class="row g-4">
+                <!-- Audiobook Production -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="addon-card h-100 animate__animated animate__fadeIn">
+                        <div class="addon-content">
+                            <h3 class="addon-title">Audiobook Production</h3>
+                            <div class="addon-price">$2,499</div>
+                            <p class="addon-description">Professional narration and audio production for your book.</p>
+                        </div>
+                        <a href="#" class="btn btn-outline-primary w-100 mt-auto">Add to Plan</a>
+                    </div>
+                </div>
+
+                <!-- Translation Services -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="addon-card h-100 animate__animated animate__fadeIn animate__delay-1s">
+                        <div class="addon-content">
+                            <h3 class="addon-title">Translation Services</h3>
+                            <div class="addon-price">$1,999</div>
+                            <p class="addon-description">Translate your book into multiple languages to reach global
+                                audiences.</p>
+                        </div>
+                        <a href="#" class="btn btn-outline-primary w-100 mt-auto">Add to Plan</a>
+                    </div>
+                </div>
+
+                <!-- Book Trailer -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="addon-card h-100 animate__animated animate__fadeIn animate__delay-2s">
+                        <div class="addon-content">
+                            <h3 class="addon-title">Book Trailer</h3>
+                            <div class="addon-price">$899</div>
+                            <p class="addon-description">Cinematic book trailer to promote your work on social media.
+                            </p>
+                        </div>
+                        <a href="#" class="btn btn-outline-primary w-100 mt-auto">Add to Plan</a>
+                    </div>
+                </div>
+
+                <!-- Advanced Marketing -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="addon-card h-100 animate__animated animate__fadeIn animate__delay-3s">
+                        <div class="addon-content">
+                            <h3 class="addon-title">Advanced Marketing</h3>
+                            <div class="addon-price">$1,499</div>
+                            <p class="addon-description">Extended marketing campaign with influencer outreach and paid
+                                advertising.</p>
+                        </div>
+                        <a href="#" class="btn btn-outline-primary w-100 mt-auto">Add to Plan</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="process-cta text-center mt-5 animate__animated animate__fadeIn animate__delay-4s">
+                <h3 class="cta-title">Need a Custom Solution?</h3>
+                <p class="cta-subtitle">
+                    Have specific requirements? Our team can create a custom publishing package tailored to your unique
+                    needs and budget.
+                </p>
+                <a href="#" class="btn btn-primary mt-3">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <!-- About Column -->
+                <div class="col-lg-4 mb-4">
+                    <h4 class="text-uppercase mb-4">SCRIPTIFY.</h4>
+                    <p class="mb-4">Helping authors showcase their awesome books to the world with professional
+                        publishing services.</p>
+                    <address>
+                        <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i> 1915 5th Avenue</p>
+                        <p class="mb-1"> New York, NY 10001</p>
+                        <p><i class="bi bi-envelope-fill me-2"></i> info@scriptify.com</p>
+                    </address>
+                </div>
+
+                <!-- Services Column -->
+                <div class="col-md-4 col-lg-2 mb-4">
+                    <h4 class="text-uppercase mb-4">Services</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Book Publishing</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Editorial Services</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Cover Design</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Marketing</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Distribution</a></li>
                     </ul>
-                    <div class="plan-footer mt-auto">
-                        <a href="#" class="btn btn-outline-primary w-100">Choose Starter</a>
-                    </div>
                 </div>
-            </div>
-            
-            <!-- Professional Plan (Most Popular) -->
-            <div class="col-md-6 col-lg-4">
-                <div class="plan-card h-100 animate__animated animate__fadeInUp">
-                    <div class="plan-header">
-                        <div class="popular-badge">Most Popular</div>
-                        <h3 class="plan-title">Professional</h3>
-                        <div class="plan-price">$3,999</div>
-                    </div>
-                    <p class="plan-description">Comprehensive publishing solution for serious authors.</p>
-                    <ul class="plan-features">
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Developmental & copy editing (unlimited words)</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Premium cover design with multiple concepts</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> ISBN & copyright registration</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Print & digital publishing</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Extended distribution network</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Professional marketing campaign</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Author website creation</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Social media setup</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> 12 months author support</li>
+
+                <!-- Resources Column -->
+                <div class="col-md-4 col-lg-2 mb-4">
+                    <h4 class="text-uppercase mb-4">Resources</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Book Catalog</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Author Profiles</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Submission Guidelines</a>
+                        </li>
+                        <li><a href="#" class="text-white text-decoration-none">Publishing Plans</a></li>
                     </ul>
-                    <div class="plan-footer mt-auto">
-                        <a href="#" class="btn btn-primary w-100">Choose Professional</a>
-                    </div>
                 </div>
-            </div>
-            
-            <!-- Premium Plan -->
-            <div class="col-md-6 col-lg-4">
-                <div class="plan-card h-100 animate__animated animate__fadeInRight">
-                    <div class="plan-header">
-                        <h3 class="plan-title">Premium</h3>
-                        <div class="plan-price">$7,999</div>
-                    </div>
-                    <p class="plan-description">Full-service publishing with maximum exposure and support.</p>
-                    <ul class="plan-features">
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Complete editorial package</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Premium cover design & interior layout</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Hardcover & paperback printing</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Global distribution network</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Comprehensive marketing strategy</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Book trailer production</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Press release & media outreach</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Author branding package</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Ongoing promotional support</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Lifetime author support</li>
+
+                <!-- Connect Column -->
+                <div class="col-md-4 col-lg-2 mb-4">
+                    <h4 class="text-uppercase mb-4">Connect</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Newsletter</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Blog</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Support</a></li>
                     </ul>
-                    <div class="plan-footer mt-auto">
-                        <a href="#" class="btn btn-outline-primary w-100">Choose Premium</a>
+                </div>
+
+                <!-- Social Media Column -->
+                <div class="col-lg-2 mb-4">
+                    <h4 class="text-uppercase mb-4">Follow Us</h4>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
 
-<!-- Add-On Services Section -->
-<section class="addon-services py-5 bg-light">
-    <div class="container">
-        <h1 class="text-center mb-5">Add-On Services</h1>
-        
-        <div class="row g-4">
-            <!-- Audiobook Production -->
-            <div class="col-md-6 col-lg-3">
-                <div class="addon-card h-100 animate__animated animate__fadeIn">
-                    <div class="addon-content">
-                        <h3 class="addon-title">Audiobook Production</h3>
-                        <div class="addon-price">$2,499</div>
-                        <p class="addon-description">Professional narration and audio production for your book.</p>
-                    </div>
-                    <a href="#" class="btn btn-outline-primary w-100 mt-auto">Add to Plan</a>
+            <hr class="my-4">
+
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">© 2025 Scriptify.US. All rights reserved.</p>
                 </div>
-            </div>
-            
-            <!-- Translation Services -->
-            <div class="col-md-6 col-lg-3">
-                <div class="addon-card h-100 animate__animated animate__fadeIn animate__delay-1s">
-                    <div class="addon-content">
-                        <h3 class="addon-title">Translation Services</h3>
-                        <div class="addon-price">$1,999</div>
-                        <p class="addon-description">Translate your book into multiple languages to reach global audiences.</p>
-                    </div>
-                    <a href="#" class="btn btn-outline-primary w-100 mt-auto">Add to Plan</a>
-                </div>
-            </div>
-            
-            <!-- Book Trailer -->
-            <div class="col-md-6 col-lg-3">
-                <div class="addon-card h-100 animate__animated animate__fadeIn animate__delay-2s">
-                    <div class="addon-content">
-                        <h3 class="addon-title">Book Trailer</h3>
-                        <div class="addon-price">$899</div>
-                        <p class="addon-description">Cinematic book trailer to promote your work on social media.</p>
-                    </div>
-                    <a href="#" class="btn btn-outline-primary w-100 mt-auto">Add to Plan</a>
-                </div>
-            </div>
-            
-            <!-- Advanced Marketing -->
-            <div class="col-md-6 col-lg-3">
-                <div class="addon-card h-100 animate__animated animate__fadeIn animate__delay-3s">
-                    <div class="addon-content">
-                        <h3 class="addon-title">Advanced Marketing</h3>
-                        <div class="addon-price">$1,499</div>
-                        <p class="addon-description">Extended marketing campaign with influencer outreach and paid advertising.</p>
-                    </div>
-                    <a href="#" class="btn btn-outline-primary w-100 mt-auto">Add to Plan</a>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-white text-decoration-none me-3">Terms of Service</a>
+                    <a href="#" class="text-white text-decoration-none">Cookie Policy</a>
                 </div>
             </div>
         </div>
-
-        <div class="process-cta text-center mt-5 animate__animated animate__fadeIn animate__delay-4s">
-            <h3 class="cta-title">Need a Custom Solution?</h3>
-            <p class="cta-subtitle">
-                Have specific requirements? Our team can create a custom publishing package tailored to your unique needs and budget.
-            </p>
-            <a href="#" class="btn btn-primary mt-3">Contact Us</a>
-        </div>
-    </div>
-</section>
+    </footer>
 
 
-<!-- Footer Section -->
-<footer class="bg-dark text-white pt-5 pb-4">
-    <div class="container">
-        <div class="row">
-            <!-- About Column -->
-            <div class="col-lg-4 mb-4">
-                <h4 class="text-uppercase mb-4">SCRIPTIFY.</h4>
-                <p class="mb-4">Helping authors showcase their awesome books to the world with professional publishing services.</p>
-                <address>
-                    <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i> 1915 5th Avenue</p>
-                    <p class="mb-1"> New York, NY 10001</p>
-                    <p><i class="bi bi-envelope-fill me-2"></i> info@scriptify.com</p>
-                </address>
-            </div>
-            
-            <!-- Services Column -->
-            <div class="col-md-4 col-lg-2 mb-4">
-                <h4 class="text-uppercase mb-4">Services</h4>
-                <ul class="list-unstyled">
-                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Book Publishing</a></li>
-                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Editorial Services</a></li>
-                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Cover Design</a></li>
-                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Marketing</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Distribution</a></li>
-                </ul>
-            </div>
-            
-            <!-- Resources Column -->
-            <div class="col-md-4 col-lg-2 mb-4">
-                <h4 class="text-uppercase mb-4">Resources</h4>
-                <ul class="list-unstyled">
-                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Book Catalog</a></li>
-                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Author Profiles</a></li>
-                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Submission Guidelines</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Publishing Plans</a></li>
-                </ul>
-            </div>
-            
-            <!-- Connect Column -->
-            <div class="col-md-4 col-lg-2 mb-4">
-                <h4 class="text-uppercase mb-4">Connect</h4>
-                <ul class="list-unstyled">
-                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
-                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Newsletter</a></li>
-                    <li class="mb-2"><a href="#" class="text-white text-decoration-none">Blog</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Support</a></li>
-                </ul>
-            </div>
-            
-         <!-- Social Media Column -->
-            <div class="col-lg-2 mb-4">
-                <h4 class="text-uppercase mb-4">Follow Us</h4>
-                <div class="d-flex gap-3">
-                    <a href="#" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="text-white fs-5"><i class="bi bi-linkedin"></i></a>
-                </div>
-            </div>
-        </div>
-        
-        <hr class="my-4">
-        
-        <div class="row">
-            <div class="col-md-6 text-center text-md-start">
-                <p class="mb-0">© 2025 Scriptify.US. All rights reserved.</p>
-            </div>
-            <div class="col-md-6 text-center text-md-end">
-                <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
-                <a href="#" class="text-white text-decoration-none me-3">Terms of Service</a>
-                <a href="#" class="text-white text-decoration-none">Cookie Policy</a>
-            </div>
-        </div>
-    </div>
-</footer>
-
-  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            
+
+        document.addEventListener('DOMContentLoaded', function () {
+
         });
     </script>
-</body>
+    </body>
+
 </html>
