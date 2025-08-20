@@ -568,211 +568,179 @@
             </div>
         </div>
     </nav>
-
-    <!-- Featured Publications Section -->
-    <section class="featured-section py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="section-title animate__animated animate__fadeIn"><b style="color: black;">Featured
-                        Publications</h2></b>
-                <p class="section-subtitle animate__animated animate__fadeIn animate__delay-1s">
-                    Discover our latest bestsellers and award-winning titles from talented authors around the world.
-                </p>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-            <div class="container-fluid">
-                <div class="row">
-                    <!-- Sidebar Categories with Genres -->
-                    <div class="col-md-3 col-lg-2 mb-4">
-                        <div class="accordion" id="categoryAccordion">
-
-                            <!-- Technology -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingTech">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTech" aria-expanded="false" aria-controls="collapseTech">
-                                        Technology
-                                    </button>
-                                </h2>
-                                <div id="collapseTech" class="accordion-collapse collapse" aria-labelledby="headingTech" data-bs-parent="#categoryAccordion">
-                                    <div class="accordion-body p-0">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item filter-btn" data-category="ai">Artificial Intelligence</li>
-                                            <li class="list-group-item filter-btn" data-category="software">Software</li>
-                                            <li class="list-group-item filter-btn" data-category="hardware">Hardware</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Fiction -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingFiction">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFiction" aria-expanded="false" aria-controls="collapseFiction">
-                                        Literary Fiction
-                                    </button>
-                                </h2>
-                                <div id="collapseFiction" class="accordion-collapse collapse" aria-labelledby="headingFiction" data-bs-parent="#categoryAccordion">
-                                    <div class="accordion-body p-0">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item filter-btn" data-category="classic">Classics</li>
-                                            <li class="list-group-item filter-btn" data-category="modern">Modern</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Business -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingBusiness">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBusiness" aria-expanded="false" aria-controls="collapseBusiness">
-                                        Business
-                                    </button>
-                                </h2>
-                                <div id="collapseBusiness" class="accordion-collapse collapse" aria-labelledby="headingBusiness" data-bs-parent="#categoryAccordion">
-                                    <div class="accordion-body p-0">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item filter-btn" data-category="startup">Startups</li>
-                                            <li class="list-group-item filter-btn" data-category="finance">Finance</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Add more categories with genres here -->
-
-                        </div>
-                    </div>
-
-                    <!-- Books Grid -->
-                    <div class="col-md-9 col-lg-10">
-                        <div class="row g-4 book-container" id="all-books">
-                            <!-- Book Example -->
-                            <div class="col-lg-3 col-md-6 animate__animated animate__fadeInUp book-item" data-category="ai">
-                                <div class="book-card">
-                                    <div class="book-image-container">
-                                        <div class="book-badge">Artificial Intelligence</div>
-                                        <img src="../images/pub1.jpg" alt="AI Book" class="book-image">
-                                    </div>
-                                    <div class="book-content">
-                                        <h3 class="book-title">AI Revolution</h3>
-                                        <p class="book-author">by John Smith</p>
-                                        <p class="book-description">An in-depth look at how AI is shaping the future.</p>
-                                        <div class="book-footer">
-                                            <div class="book-rating"><span class="stars">⭐⭐⭐⭐</span> <span>4.5</span></div>
-                                            <button class="book-link" data-bs-toggle="modal" data-bs-target="#bookModal1">View Details</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- More books... -->
-                            <!-- Book Example -->
-                            <div class="col-lg-3 col-md-6 animate__animated animate__fadeInUp book-item" data-category="ai">
-                                <div class="book-card">
-                                    <div class="book-image-container">
-                                        <div class="book-badge">Artificial Intelligence</div>
-                                        <img src="../images/pub1.jpg" alt="AI Book" class="book-image">
-                                    </div>
-                                    <div class="book-content">
-                                        <h3 class="book-title">AI Revolution</h3>
-                                        <p class="book-author">by John Smith</p>
-                                        <p class="book-description">An in-depth look at how AI is shaping the future.</p>
-                                        <div class="book-footer">
-                                            <div class="book-rating"><span class="stars">⭐⭐⭐⭐</span> <span>4.5</span></div>
-                                            <button class="book-link" data-bs-toggle="modal" data-bs-target="#bookModal1">View Details</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Book Example -->
-                            <div class="col-lg-3 col-md-6 animate__animated animate__fadeInUp book-item" data-category="ai">
-                                <div class="book-card">
-                                    <div class="book-image-container">
-                                        <div class="book-badge">Artificial Intelligence</div>
-                                        <img src="../images/pub1.jpg" alt="AI Book" class="book-image">
-                                    </div>
-                                    <div class="book-content">
-                                        <h3 class="book-title">AI Revolution</h3>
-                                        <p class="book-author">by John Smith</p>
-                                        <p class="book-description">An in-depth look at how AI is shaping the future.</p>
-                                        <div class="book-footer">
-                                            <div class="book-rating"><span class="stars">⭐⭐⭐⭐</span> <span>4.5</span></div>
-                                            <button class="book-link" data-bs-toggle="modal" data-bs-target="#bookModal1">View Details</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Book Example -->
-                            <div class="col-lg-3 col-md-6 animate__animated animate__fadeInUp book-item" data-category="ai">
-                                <div class="book-card">
-                                    <div class="book-image-container">
-                                        <div class="book-badge">Artificial Intelligence</div>
-                                        <img src="../images/pub1.jpg" alt="AI Book" class="book-image">
-                                    </div>
-                                    <div class="book-content">
-                                        <h3 class="book-title">AI Revolution</h3>
-                                        <p class="book-author">by John Smith</p>
-                                        <p class="book-description">An in-depth look at how AI is shaping the future.</p>
-                                        <div class="book-footer">
-                                            <div class="book-rating"><span class="stars">⭐⭐⭐⭐</span> <span>4.5</span></div>
-                                            <button class="book-link" data-bs-toggle="modal" data-bs-target="#bookModal1">View Details</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Book Example -->
-                            <div class="col-lg-3 col-md-6 animate__animated animate__fadeInUp book-item" data-category="ai">
-                                <div class="book-card">
-                                    <div class="book-image-container">
-                                        <div class="book-badge">Artificial Intelligence</div>
-                                        <img src="../images/pub1.jpg" alt="AI Book" class="book-image">
-                                    </div>
-                                    <div class="book-content">
-                                        <h3 class="book-title">AI Revolution</h3>
-                                        <p class="book-author">by John Smith</p>
-                                        <p class="book-description">An in-depth look at how AI is shaping the future.</p>
-                                        <div class="book-footer">
-                                            <div class="book-rating"><span class="stars">⭐⭐⭐⭐</span> <span>4.5</span></div>
-                                            <button class="book-link" data-bs-toggle="modal" data-bs-target="#bookModal1">View Details</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
+   
+ <!-- Featured Publications Section -->
+<section class="featured-section py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title animate__animated animate__fadeIn">
+                <b style="color: black;">Featured Publications</b>
+            </h2>
+            <p class="section-subtitle animate__animated animate__fadeIn animate__delay-1s">
+                Discover our latest bestsellers and award-winning titles from talented authors around the world.
+            </p>
         </div>
-    </section>
+
+        <?php
+        if (file_exists('../admin/includes/systemconfig.php')) include_once('../admin/includes/systemconfig.php');
+
+        // Get all books with categories + genres
+        $sql = "SELECT a.id AS bookid, a.title, a.description, a.published_date,
+                   a.pages, a.isbn, a.publisher, a.picture_url, a.rating, a.review_count, a.created_at,
+                   b.authorid, b.author_name, b.details, b.picture_url as author_picture,
+                   c.genreid, c.name AS genre_name, d.catid, d.name AS categoryname
+            FROM tblbooks a
+            JOIN tblauthors b ON a.authorid=b.authorid
+            JOIN tblgenres c ON a.genreid=c.genreid
+            JOIN tblcategories d ON c.category_id=d.catid";
+
+        $rs = mysqli_query($db_connection, $sql);
+
+        // Group categories and genres
+        $categories = [];
+        $books = [];
+        while ($rw = mysqli_fetch_assoc($rs)) {
+            $catId = $rw['catid'];
+            $genreId = $rw['genreid'];
+
+            // Group categories -> genres
+            if (!isset($categories[$catId])) {
+                $categories[$catId] = [
+                    'name' => $rw['categoryname'],
+                    'genres' => []
+                ];
+            }
+            if (!isset($categories[$catId]['genres'][$genreId])) {
+                $categories[$catId]['genres'][$genreId] = $rw['genre_name'];
+            }
+
+            // Store books for later
+            $books[] = $rw;
+        }
+        ?>
+
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Sidebar Categories with Genres (Accordion Design) -->
+                <div class="col-md-3 col-lg-2 mb-4">
+                    <div class="accordion" id="categoryAccordion">
+                        <?php foreach ($categories as $catId => $catData): ?>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading<?= $catId ?>">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $catId ?>" aria-expanded="false" aria-controls="collapse<?= $catId ?>">
+                                        <?= htmlspecialchars($catData['name']) ?>
+                                    </button>
+                                </h2>
+                                <div id="collapse<?= $catId ?>" class="accordion-collapse collapse" aria-labelledby="heading<?= $catId ?>" data-bs-parent="#categoryAccordion">
+                                    <div class="accordion-body p-0">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item filter-item" data-genre="all">Show All</li>
+                                            <?php foreach ($catData['genres'] as $genreId => $genreName): ?>
+                                                <li class="list-group-item filter-item" data-genre="<?= $genreId ?>">
+                                                    <?= htmlspecialchars($genreName) ?>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <!-- Books Grid -->
+                <div class="col-md-9 col-lg-10">
+                    <div class="row g-4 book-container" id="all-books">
+                        <?php foreach ($books as $book): ?>
+                            <div class="col-lg-3 col-md-6 animate__animated animate__fadeInUp book-item" data-genre="<?= $book['genreid'] ?>">
+                                <div class="book-card">
+                                    <div class="book-image-container">
+                                        <div class="book-badge"><?= htmlspecialchars($book['genre_name']) ?></div>
+                                        <img src="../admin/pages/picture_book/<?= htmlspecialchars($book['picture_url']) ?>" alt="<?= htmlspecialchars($book['title']) ?>" class="book-image">
+                                    </div>
+                                    <div class="book-content">
+                                        <h3 class="book-title"><?= htmlspecialchars($book['title']) ?></h3>
+                                        <p class="book-author">by <?= htmlspecialchars($book['author_name']) ?></p>
+                                        <p class="book-description"><?= htmlspecialchars(substr($book['description'], 0, 80)) ?>...</p>
+                                        <div class="book-footer">
+                                            <div class="book-rating"><span class="stars">⭐⭐⭐⭐</span> <span><?= htmlspecialchars($book['rating']) ?></span></div>
+                                            <button class="book-link btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#bookModal<?= $book['bookid'] ?>">View Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Book Modal -->
+                            <div class="modal fade" id="bookModal<?= $book['bookid'] ?>" tabindex="-1" aria-labelledby="bookModalLabel<?= $book['bookid'] ?>" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="bookModalLabel<?= $book['bookid'] ?>"><?= htmlspecialchars($book['title']) ?></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <img src="../admin/pages/picture_book/<?= htmlspecialchars($book['picture_url']) ?>" alt="<?= htmlspecialchars($book['title']) ?>" class="img-fluid rounded shadow">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h6>Author: <?= htmlspecialchars($book['author_name']) ?></h6>
+                                                    <p><strong>Genre:</strong> <?= htmlspecialchars($book['genre_name']) ?></p>
+                                                    <p><strong>Publisher:</strong> <?= htmlspecialchars($book['publisher']) ?></p>
+                                                    <p><strong>Published Date:</strong> <?= htmlspecialchars($book['published_date']) ?></p>
+                                                    <p><strong>ISBN:</strong> <?= htmlspecialchars($book['isbn']) ?></p>
+                                                    <p><strong>Pages:</strong> <?= htmlspecialchars($book['pages']) ?></p>
+                                                    <p><strong>Description:</strong><br><?= nl2br(htmlspecialchars($book['description'])) ?></p>
+                                                    <p><strong>Rating:</strong> ⭐ <?= htmlspecialchars($book['rating']) ?> (<?= htmlspecialchars($book['review_count']) ?> reviews)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Filtering Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const filterItems = document.querySelectorAll(".filter-item");
+    const books = document.querySelectorAll(".book-item");
+
+    function filterBooks(genre) {
+        books.forEach(book => {
+            if (genre === "all" || book.getAttribute("data-genre") === genre) {
+                book.style.display = "block";
+                book.classList.add("animate__fadeInUp");
+            } else {
+                book.style.display = "none";
+                book.classList.remove("animate__fadeInUp");
+            }
+        });
+    }
+
+    filterItems.forEach(item => {
+        item.addEventListener("click", function() {
+            const genre = this.getAttribute("data-genre");
+            filterBooks(genre);
+
+            filterItems.forEach(i => i.classList.remove("active"));
+            this.classList.add("active");
+        });
+    });
+});
+</script>
+
 
 
 
