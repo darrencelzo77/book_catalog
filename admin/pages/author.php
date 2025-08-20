@@ -68,6 +68,7 @@ $result = mysqli_query($db_connection, "SELECT authorid, author_name, details FR
       <th style="padding:8px 10px; text-align:left;">ID</th>
       <th style="padding:8px 10px; text-align:left;">Author Name</th>
       <th style="padding:8px 10px; text-align:left;">Details</th>
+      <th style="padding:8px 10px; text-align:left;">Upload</th>
       <th style="padding:8px 10px; text-align:left;">Action</th>
     </tr>
   </thead>
@@ -80,20 +81,41 @@ $result = mysqli_query($db_connection, "SELECT authorid, author_name, details FR
           <td style="padding:8px 10px;"><?php echo $row['details']; ?></td>
           <td style="padding:8px 10px;">
             <form method="POST" enctype="multipart/form-data">
-              <input type="hidden" name="authorid" value="<?php echo $row['authorid']; ?>" />
+              <input type="hidden" name="authorId" value="<?php echo $row['authorid']; ?>" />
+              <input type="file"
+                name="authorFile"
+                data-authorid="<?php echo $row['authorid']; ?>"
+                onchange="uploadBookImageAuthor(this)" />
+
+            </form>
+
+            <!-- <form method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="book_id" value="<?php echo $row['book_id']; ?>" />
               <input type="file"
                 name="picture_url"
-                id="picture_url_<?php echo $row['authorid']; ?>"
-                onchange="uploadBookImageAuthor(this)" />
-            </form>
-            <a href="javascript:void();" onclick="update_author(<?php echo $row['authorid']; ?>);"
-              style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; margin-right:6px; display:inline-block;">
-              Edit
+                id="picture_url_<?php echo $row['book_id']; ?>"
+                onchange="uploadBookImage(this)" />
+            </form> -->
+          </td>
+          <td style="padding:8px 10px;">
+            <a href="javascript:void(0)"
+              onclick="openCustom('pages/author_view.php?bbbb=<?php echo $row['authorid']; ?>',700,400);"
+              style="background:#2563eb; color:#fff; padding:6px 10px; border-radius:4px; text-decoration:none; font-size:14px; margin-right:6px; display:inline-block;">
+              <i class="fas fa-eye"></i>
             </a>
-            <a href="javascript:void();" onclick="delete_author(<?php echo $row['authorid']; ?>);"
-              style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; display:inline-block;">
-              Delete
+
+            <a href="javascript:void(0);"
+              onclick="update_author(<?php echo $row['authorid']; ?>);"
+              style="background:#1e40ae; color:#fff; padding:6px 10px; border-radius:4px; text-decoration:none; font-size:14px; margin-right:6px; display:inline-block;">
+              <i class="fas fa-edit"></i>
             </a>
+
+            <a href="javascript:void(0);"
+              onclick="delete_author(<?php echo $row['authorid']; ?>);"
+              style="background:#dc2626; color:#fff; padding:6px 10px; border-radius:4px; text-decoration:none; font-size:14px; display:inline-block;">
+              <i class="fas fa-trash"></i>
+            </a>
+
           </td>
         </tr>
       <?php endwhile; ?>

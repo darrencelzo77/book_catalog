@@ -31,6 +31,7 @@ if (isset($_SESSION['adminid'])) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style2.css">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <script>
     function ajax_fn(url, elementId) {
@@ -565,8 +566,9 @@ if (isset($_SESSION['adminid'])) {
     }
 
     function uploadBookImageAuthor(input) {
-      const form = input.closest('form');
-      const formData = new FormData(form);
+      const formData = new FormData();
+      formData.append("authorId", input.getAttribute("data-authorid"));
+      formData.append("authorFile", input.files[0]);
 
       fetch('pages/author_upload.php', {
           method: 'POST',

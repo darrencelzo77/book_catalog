@@ -227,7 +227,7 @@ if (isset($_GET['bookid_get'])) {
         justify-content: flex-end
     }
 
-    .btn {
+    /* .btn {
         background: #1e40ae;
         color: #fff;
         padding: 6px 12px;
@@ -238,7 +238,7 @@ if (isset($_GET['bookid_get'])) {
         display: inline-block;
         border: none;
         cursor: pointer
-    }
+    } */
 </style>
 
 <div class="form-header">
@@ -314,11 +314,15 @@ if (isset($_GET['bookid_get'])) {
         <input type="number" id="pages" min="1" value="<?php echo $pages_; ?>">
     </div>
 
+    <!-- <a onclick="add_author();"
+        style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;">
+        + Add
+    </a> -->
     <div class="form-actions">
         <?php if (isset($_GET['bookid_get'])): ?>
-            <a class="btn" onclick="update_book(<?php echo (int)$_GET['bookid_get']; ?>);">+ Update</a>
+            <a style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;" class="btn" onclick="update_book(<?php echo (int)$_GET['bookid_get']; ?>);">+ Update</a>
         <?php else: ?>
-            <a class="btn" onclick="add_book();">+ Add</a>
+            <a style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;" class="btn" onclick="add_book();">+ Add</a>
         <?php endif; ?>
     </div>
 </form>
@@ -333,6 +337,7 @@ if (isset($_GET['bookid_get'])) {
                 <th style="padding:8px 10px; text-align:left;">Author</th>
                 <th style="padding:8px 10px; text-align:left;">Genre</th>
                 <th style="padding:8px 10px; text-align:left;">Category</th>
+                <th style="padding:8px 10px; text-align:left;">Upload</th>
                 <th style="padding:8px 10px; text-align:left;">Action</th>
             </tr>
         </thead>
@@ -353,19 +358,24 @@ if (isset($_GET['bookid_get'])) {
                                     id="picture_url_<?php echo $row['book_id']; ?>"
                                     onchange="uploadBookImage(this)" />
                             </form>
+                        </td>
+                        <td style="padding:8px 10px;">
                             <a href="javascript:void(0)"
                                 onclick="openCustom('pages/book_view.php?bbbb=<?php echo $row['book_id']; ?>',700,400);"
-                                style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; margin-right:6px; display:inline-block;">
-                                View
+                                style="background:#2563eb; color:#fff; padding:6px 10px; border-radius:4px; text-decoration:none; font-size:14px; margin-right:6px; display:inline-block;">
+                                <i class="fas fa-eye"></i>
                             </a>
 
-                            <a href="javascript:void(0)" onclick="ajax_fn('pages/book.php?bookid_get=<?php echo $row['book_id']; ?>', 'ultimate_content')"
-                                style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; margin-right:6px; display:inline-block;">
-                                Edit
+                            <a href="javascript:void(0)"
+                                onclick="ajax_fn('pages/book.php?bookid_get=<?php echo $row['book_id']; ?>', 'ultimate_content')"
+                                style="background:#1e40ae; color:#fff; padding:6px 10px; border-radius:4px; text-decoration:none; font-size:14px; margin-right:6px; display:inline-block;">
+                                <i class="fas fa-edit"></i>
                             </a>
-                            <a href="javascript:void(0)" onclick="delete_book(<?php echo $row['book_id']; ?>)"
-                                style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; display:inline-block;">
-                                Delete
+
+                            <a href="javascript:void(0)"
+                                onclick="delete_book(<?php echo $row['book_id']; ?>)"
+                                style="background:#dc2626; color:#fff; padding:6px 10px; border-radius:4px; text-decoration:none; font-size:14px; display:inline-block;">
+                                <i class="fas fa-trash"></i>
                             </a>
 
                         </td>

@@ -72,12 +72,8 @@ function valOrNA($v)
 <div style="display:flex; gap:16px; align-items:flex-start; font-family:Arial, sans-serif; padding:16px; max-width:980px;">
     <div style="flex:0 0 220px;">
         <?php if (!empty($book['picture_url'])): ?>
-            <img src="<?php echo h($book['picture_url']); ?>" alt="Cover"
+            <img src="./picture_book/<?php echo h($book['picture_url']); ?>" alt="Cover"
                 style="width:220px; height:auto; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,.15); object-fit:cover;">
-            <div style="margin-top:8px;">
-                <a href="<?php echo h($book['picture_url']); ?>" target="_blank"
-                    style="font-size:12px; color:#1e40ae; text-decoration:none;">Open image in new tab</a>
-            </div>
         <?php else: ?>
             <div style="width:220px; aspect-ratio:3/4; background:#f3f4f6; border:1px dashed #cbd5e1; border-radius:6px; display:flex; align-items:center; justify-content:center; color:#64748b;">
                 No Cover

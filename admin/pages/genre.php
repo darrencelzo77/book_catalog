@@ -125,15 +125,18 @@ if (isset($_GET['genreid_get'])) {
             <td class="cell-genre" style="padding:8px 10px;"><?php echo $row['genre_name']; ?></td>
             <td class="cell-catname" style="padding:8px 10px;"><?php echo $row['catname']; ?></td>
             <td style="padding:8px 10px;">
+              <a href="javascript:void(0)"
+                onclick="ajax_fn('pages/genre.php?genreid_get=<?php echo $row['genreid']; ?>', 'ultimate_content')"
+                style="background:#1e40ae; color:#fff; padding:6px 10px; border-radius:4px; text-decoration:none; font-size:14px; margin-right:6px; display:inline-block;">
+                <i class="fas fa-edit"></i>
+              </a>
 
-              <a href="javascript:void(0)" onclick="ajax_fn('pages/genre.php?genreid_get=<?php echo $row['genreid']; ?>', 'ultimate_content')"
-                style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; margin-right:6px; display:inline-block;">
-                Edit
+              <a href="javascript:void(0)"
+                onclick="delete_genre(<?php echo $row['genreid']; ?>);"
+                style="background:#dc2626; color:#fff; padding:6px 10px; border-radius:4px; text-decoration:none; font-size:14px; display:inline-block;">
+                <i class="fas fa-trash"></i>
               </a>
-              <a href="javascript:void(0)" onclick="delete_genre(<?php echo $row['genreid']; ?>);"
-                style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; display:inline-block;">
-                Delete
-              </a>
+
             </td>
           </tr>
         <?php endwhile; ?>

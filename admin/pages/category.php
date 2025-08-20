@@ -73,14 +73,18 @@ $result = mysqli_query($db_connection, "SELECT catid, name FROM tblcategories");
           <td style="padding:8px 10px;"><?php echo $row['name']; ?></td>
           <td style="padding:8px 10px;">
             <!-- Inline edit/delete via JS -->
-            <a href="javascript:void(0)" onclick="update_category(<?php echo $row['catid']; ?>);"
-              style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; margin-right:6px; display:inline-block;">
-              Edit
+            <a href="javascript:void(0)"
+              onclick="update_category(<?php echo $row['catid']; ?>);"
+              style="background:#1e40ae; color:#fff; padding:6px 10px; border-radius:4px; text-decoration:none; font-size:14px; margin-right:6px; display:inline-block;">
+              <i class="fas fa-edit"></i>
             </a>
-            <a href="javascript:void(0)" onclick="delete_category(<?php echo $row['catid']; ?>);"
-              style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none; font-size:12px; font-weight:bold; display:inline-block;">
-              Delete
+
+            <a href="javascript:void(0)"
+              onclick="delete_category(<?php echo $row['catid']; ?>);"
+              style="background:#dc2626; color:#fff; padding:6px 10px; border-radius:4px; text-decoration:none; font-size:14px; display:inline-block;">
+              <i class="fas fa-trash"></i>
             </a>
+
           </td>
         </tr>
       <?php endwhile; ?>
