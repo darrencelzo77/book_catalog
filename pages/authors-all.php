@@ -203,7 +203,7 @@
             FROM tblauthors b
             LEFT JOIN tblbooks a ON a.authorid = b.authorid
             LEFT JOIN tblgenres c ON a.genreid = c.genreid
-            GROUP BY b.authorid, b.author_name, b.details, b.picture_url, c.name LIMIT 0,5";
+            GROUP BY b.authorid, b.author_name, b.details, b.picture_url, c.name";
 
             $rs = mysqli_query($db_connection, $sql);
 
@@ -256,102 +256,18 @@
          </div>
      </div>
      <div class="text-center mt-4">
-         <a href="authors-all" class="btn btn-primary">View All Authors</a>
+         <a href="authors" class="btn btn-primary">View All Authors</a>
      </div>
 
-
-
-
-     <!-- Emerging Authors Section -->
-     <section class="emerging-authors py-5">
-         <div class="container">
-             <div class="row justify-content-center">
-                 <div class="col-lg-10">
-                     <h1 class="section-main-title mb-4 text-center">Emerging Authors</h1>
-                     <p class="section-subtitle mb-5 text-center">Discover rising talents and fresh voices in literature across various genres.</p>
-
-                     <?php
-                        if (file_exists('../admin/includes/systemconfig.php')) include_once('../admin/includes/systemconfig.php');
-
-                        // Query: Limit to 5 "emerging authors" (example: authors with less than 5 books)
-                        $sql = "SELECT b.authorid, b.author_name, b.details, b.picture_url AS author_picture,
-                            COUNT(a.id) AS total_books,
-                            MAX(a.title) AS latest_book,
-                            c.name AS genre_name
-                        FROM tblauthors b
-                        LEFT JOIN tblbooks a ON a.authorid = b.authorid
-                        LEFT JOIN tblgenres c ON a.genreid = c.genreid
-                        GROUP BY b.authorid, b.author_name, b.details, b.picture_url, c.name
-                        HAVING COUNT(a.id) <= 5
-                        ORDER BY RAND()
-                        LIMIT 5";
-
-                        $rs = mysqli_query($db_connection, $sql);
-
-                        $emerging_authors = [];
-                        while ($rw = mysqli_fetch_assoc($rs)) {
-                            $authorId = $rw['authorid'];
-
-                            if (!isset($emerging_authors[$authorId])) {
-                                $emerging_authors[$authorId] = [
-                                    'name' => $rw['author_name'],
-                                    'details' => $rw['details'],
-                                    'picture' => $rw['author_picture'],
-                                    'total_books' => $rw['total_books'],
-                                    'latest_book' => $rw['latest_book'],
-                                    'genres' => []
-                                ];
-                            }
-
-                            if (!empty($rw['genre_name'])) {
-                                $emerging_authors[$authorId]['genres'][] = $rw['genre_name'];
-                            }
-                        }
-                        ?>
-
-                     <div class="row justify-content-center">
-                         <?php foreach ($emerging_authors as $authorId => $author): ?>
-                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4">
-                                 <div class="genre-label text-center">
-                                     <?= !empty($author['genres']) ? htmlspecialchars(implode(", ", $author['genres'])) : "General" ?>
-                                 </div>
-
-                                 <!-- Flexbox card -->
-                                 <div class="author-card d-flex flex-column text-center p-3 h-100">
-                                     <img src="../admin/pages/picture_author/<?= htmlspecialchars($author['picture']) ?>"
-                                         alt="<?= htmlspecialchars($author['name']) ?>"
-                                         class="author-img mb-3">
-
-                                     <h4 class="author-name"><?= htmlspecialchars($author['name']) ?></h4>
-                                     <div class="book-count"><?= $author['total_books'] ?> Books</div>
-                                     <div class="latest-book mb-3">Latest: <?= htmlspecialchars($author['latest_book']) ?></div>
-
-                                     <!-- Button fixed to bottom -->
-                                     <div class="mt-auto">
-                                         <a href="authors-all?author=<?= $authorId ?>"
-                                             class="discover-btn btn btn-outline-primary btn-sm w-100">
-                                             Discover Books
-                                         </a>
-                                     </div>
-                                 </div>
-                             </div>
-                         <?php endforeach; ?>
-                     </div>
-
-                 </div>
-             </div>
-         </div>
-
-         <div class="process-cta text-center mt-5 animate__animated animate__fadeIn animate__delay-0.1s">
-             <h3 class="cta-title">Become a Published Author</h3>
-             <p class="cta-subtitle">
-                 Join our community of successful authors and share your story with the world.
-             </p>
-             <a href="#" class="btn btn-primary mt-3">Submit Your Manuscript</a>
-         </div>
+     <div class="process-cta text-center mt-5 animate__animated animate__fadeIn animate__delay-0.1s">
+         <h3 class="cta-title">Become a Published Author</h3>
+         <p class="cta-subtitle">
+             Join our community of successful authors and share your story with the world.
+         </p>
+         <a href="#" class="btn btn-primary mt-3">Submit Your Manuscript</a>
+     </div>
+     <br>
      </section>
-
-
 
 
 

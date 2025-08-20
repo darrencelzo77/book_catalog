@@ -964,8 +964,7 @@
                         Helping authors like you showcase your awesome book to the world with professional publishing, marketing, and distribution services.
                     </p>
                     <div class="hero-buttons d-flex">
-                        <a href="#" class="btn btn-primary animate__animated animate__fadeInUp animate-delay-1">Get Started Today</a>
-                        <a href="#" class="btn btn-outline-primary animate__animated animate__fadeInUp animate-delay-2">View Our Books</a>
+                        <a href="pages/book-catalog" class="btn btn-outline-primary animate__animated animate__fadeInUp animate-delay-2">View Our Books</a>
                     </div>
                 </div>
                 <div class="hero-image-container animate__animated animate__fadeInRight">

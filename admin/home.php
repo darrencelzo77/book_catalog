@@ -373,6 +373,7 @@ if (isset($_SESSION['adminid'])) {
       var rating = (document.getElementById('rating')?.value || '').trim();
       var review_count = (document.getElementById('review_count')?.value || '').trim();
       var pages = (document.getElementById('pages')?.value || '').trim();
+      var link_ = (document.getElementById('link_')?.value || '').trim();
 
       if (!title) {
         alert('Please enter a Title.');
@@ -423,6 +424,7 @@ if (isset($_SESSION['adminid'])) {
       form.append('rating', rating);
       form.append('review_count', review_count);
       form.append('pages', pages);
+      form.append('link_', link_);
 
       $.ajax({
         url: 'pages/book.php',
@@ -454,6 +456,7 @@ if (isset($_SESSION['adminid'])) {
       var rating = (document.getElementById('rating')?.value || '').trim();
       var review_count = (document.getElementById('review_count')?.value || '').trim();
       var pages = (document.getElementById('pages')?.value || '').trim();
+      var link_ = document.getElementById('link_').value;
 
       if (!title) {
         alert('Please enter a Title.');
@@ -504,6 +507,7 @@ if (isset($_SESSION['adminid'])) {
       form.append('rating', rating);
       form.append('review_count', review_count);
       form.append('pages', pages);
+      form.append('link_', link_);
 
       $.ajax({
         url: 'pages/book.php',

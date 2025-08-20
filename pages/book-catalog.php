@@ -59,13 +59,7 @@
             padding: 80px 0;
         }
 
-        .book-image-container {
-            height: 300px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
+   
         .card {
             transition: all 0.3s ease;
             overflow: hidden;
@@ -205,7 +199,7 @@
         .card-body {
             padding-top: 1rem !important;
             /* Additional top padding */
-            min-height: 200px;
+            min-height: 100px;
             /* Set minimum height for text area */
         }
 
@@ -586,7 +580,7 @@
             if (file_exists('../admin/includes/systemconfig.php')) include_once('../admin/includes/systemconfig.php');
 
             // Get all books with categories + genres
-            $sql = "SELECT a.id AS bookid, a.title, a.description, a.published_date,
+            $sql = "SELECT a.id AS bookid, a.title, a.description, a.published_date,a.link,
                    a.pages, a.isbn, a.publisher, a.picture_url, a.rating, a.review_count, a.created_at,
                    b.authorid, b.author_name, b.details, b.picture_url as author_picture,
                    c.genreid, c.name AS genre_name, d.catid, d.name AS categoryname
@@ -652,8 +646,14 @@
                     <!-- Books Grid -->
                     <div class="col-md-9 col-lg-10">
                         <div class="row g-4 book-container" id="all-books">
-                            <?php foreach ($books as $book): ?>
-                                <div class="col-lg-3 col-md-6 animate__animated animate__fadeInUp book-item" data-genre="<?= $book['genreid'] ?>">
+                            <?php
+                            $count = 0;
+                            foreach ($books as $book):
+                                $count++;
+                                // Hide books after the 6th one
+                                $hiddenClass = ($count > 4) ? "d-none extra-book" : "";
+                            ?>
+                                <div class="col-lg-3 col-md-4 animate__animated animate__fadeInUp book-item <?= $hiddenClass ?>" data-genre="<?= $book['genreid'] ?>">
                                     <div class="book-card">
                                         <div class="book-image-container">
                                             <div class="book-badge"><?= htmlspecialchars($book['genre_name']) ?></div>
@@ -693,6 +693,7 @@
                                                         <p><strong>Pages:</strong> <?= htmlspecialchars($book['pages']) ?></p>
                                                         <p><strong>Description:</strong><br><?= nl2br(htmlspecialchars($book['description'])) ?></p>
                                                         <p><strong>Rating:</strong> ⭐ <?= htmlspecialchars($book['rating']) ?> (<?= htmlspecialchars($book['review_count']) ?> reviews)</p>
+                                                        <p><strong>Link:</strong> <?= htmlspecialchars($book['link']) ?></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -704,7 +705,15 @@
                                 </div>
                             <?php endforeach; ?>
                         </div>
+
+                        <?php if (count($books) > 4): ?>
+                            <div class="text-center mt-4">
+                                <button id="toggleMoreBtn" class="btn btn-outline-primary">View More</button>
+                            </div>
+                        <?php endif; ?>
+
                     </div>
+
 
                 </div>
             </div>
@@ -777,6 +786,56 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Filtering logic (your existing code)
+            const filterItems = document.querySelectorAll(".filter-item");
+            const books = document.querySelectorAll(".book-item");
+
+            function filterBooks(genre) {
+                books.forEach(book => {
+                    if (genre === "all" || book.getAttribute("data-genre") === genre) {
+                        book.style.display = "block";
+                        book.classList.add("animate__fadeInUp");
+                    } else {
+                        book.style.display = "none";
+                        book.classList.remove("animate__fadeInUp");
+                    }
+                });
+            }
+
+            filterItems.forEach(item => {
+                item.addEventListener("click", function() {
+                    const genre = this.getAttribute("data-genre");
+                    filterBooks(genre);
+
+                    filterItems.forEach(i => i.classList.remove("active"));
+                    this.classList.add("active");
+                });
+            });
+
+            // 👉 Toggle View More / Hide
+            const toggleBtn = document.getElementById("toggleMoreBtn");
+            const extraBooks = document.querySelectorAll(".extra-book");
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener("click", function() {
+                    const isHidden = extraBooks[0].classList.contains("d-none");
+
+                    if (isHidden) {
+                        // Show books
+                        extraBooks.forEach(el => el.classList.remove("d-none"));
+                        toggleBtn.textContent = "Hide";
+                    } else {
+                        // Hide books
+                        extraBooks.forEach(el => el.classList.add("d-none"));
+                        toggleBtn.textContent = "View More";
+                    }
+                });
+            }
+        });
+    </script>
+
 
     <!-- Ready to Publish Section -->
     <section class="ready-to-publish py-5 position-relative" style="background-image: url('../images/banner1.jpeg');">

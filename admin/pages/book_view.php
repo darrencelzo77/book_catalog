@@ -42,7 +42,8 @@ $sql = "
     b.name          AS catname,
     d.authorid,
     d.author_name,
-    c.created_at
+    c.created_at,
+    c.link
   FROM tblbooks c
   JOIN tblgenres a      ON c.genreid = a.genreid
   JOIN tblcategories b  ON a.category_id = b.catid
@@ -118,6 +119,10 @@ function valOrNA($v)
                 <tr>
                     <td style="padding:6px 8px; color:#4b5563;">Review Count</td>
                     <td style="padding:6px 8px;"><?php echo $book['review_count'] !== null ? h($book['review_count']) : 'N/A'; ?></td>
+                </tr>
+                <tr>
+                    <td style="padding:6px 8px; color:#4b5563;">Link</td>
+                    <td style="padding:6px 8px;"><?php echo $book['link'] !== null ? h($book['link']) : 'N/A'; ?></td>
                 </tr>
             </tbody>
         </table>
