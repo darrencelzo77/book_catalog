@@ -80,10 +80,10 @@
                         <a class="nav-link" href="authors">Authors</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="submissions.html">Submission</a>
+                        <a class="nav-link" href="submissions">Submission</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contacts.html">Contact</a>
+                        <a class="nav-link" href="contacts">Contact</a>
                     </li>
                 </ul>
                 <div class="get-started-btn">
@@ -243,11 +243,10 @@
                                 Send us a Message
                             </h2>
 
-                            <form class="needs-validation" novalidate>
+                            <form action="../email/email_inquiry.php" method="POST" class="needs-validation" novalidate>
                                 <div class="mb-4">
-                                    <label for="inquiryType" class="form-label fw-bold">Inquiry Type <span
-                                            class="text-danger">*</span></label>
-                                    <select class="form-select" id="inquiryType" required>
+                                    <label for="inquiryType" class="form-label fw-bold">Inquiry Type <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="inquiryType" name="inquiryType" required>
                                         <option value="" selected disabled>Select inquiry type</option>
                                         <option value="general">General Inquiry</option>
                                         <option value="publishing">Publishing Services</option>
@@ -264,20 +263,16 @@
                                 </div>
 
                                 <div class="mb-4">
-                                    <label for="fullName" class="form-label fw-bold">Full Name <span
-                                            class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="fullName" placeholder="John Smith"
-                                        required>
+                                    <label for="fullName" class="form-label fw-bold">Full Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="fullName" name="fullName" placeholder="John Smith" required>
                                     <div class="invalid-feedback">
                                         Please provide your full name.
                                     </div>
                                 </div>
 
                                 <div class="mb-4">
-                                    <label for="email" class="form-label fw-bold">Email Address <span
-                                            class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" placeholder="your@email.com"
-                                        required>
+                                    <label for="email" class="form-label fw-bold">Email Address <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="your@email.com" required>
                                     <div class="invalid-feedback">
                                         Please provide a valid email address.
                                     </div>
@@ -286,13 +281,11 @@
                                 <div class="row mb-4">
                                     <div class="col-md-6 mb-3 mb-md-0">
                                         <label for="phone" class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-control" id="phone" placeholder="(555) 123-4567">
+                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="(555) 123-4567">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="subject" class="form-label fw-bold">Subject <span
-                                                class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="subject" placeholder="Your subject"
-                                            required>
+                                        <label for="subject" class="form-label fw-bold">Subject <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Your subject" required>
                                         <div class="invalid-feedback">
                                             Please provide a subject.
                                         </div>
@@ -300,13 +293,12 @@
                                 </div>
 
                                 <div class="mb-4">
-                                    <label for="message" class="form-label fw-bold">Message <span
-                                            class="text-danger">*</span> <span class="text-muted">(Max 500
-                                            characters)</span></label>
-                                    <textarea class="form-control" id="message" rows="5" maxlength="500"
+                                    <label for="message" class="form-label fw-bold">Message <span class="text-danger">*</span>
+                                        <span class="text-muted">(Max 500 characters)</span>
+                                    </label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" maxlength="500"
                                         placeholder="Tell us about your project or inquiry..." required></textarea>
-                                    <div class="text-end text-muted"><span id="message-counter">0</span>/500 characters
-                                    </div>
+                                    <div class="text-end text-muted"><span id="message-counter">0</span>/500 characters</div>
                                     <div class="invalid-feedback">
                                         Please provide your message.
                                     </div>
@@ -321,10 +313,12 @@
                                         </svg>
                                         Send Message
                                     </button>
-                                    <p class="text-muted mt-3 mb-0 text-center"><small>* Required fields. We'll respond
-                                            within 24 hours.</small></p>
+                                    <p class="text-muted mt-3 mb-0 text-center">
+                                        <small>* Required fields. We'll respond within 24 hours.</small>
+                                    </p>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -439,17 +433,17 @@
 
     <script>
         // Character counter for message
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const messageTextarea = document.getElementById('message');
             const counter = document.getElementById('message-counter');
 
-            messageTextarea.addEventListener('input', function () {
+            messageTextarea.addEventListener('input', function() {
                 counter.textContent = this.value.length;
             });
 
             // Form validation
             const form = document.querySelector('.needs-validation');
-            form.addEventListener('submit', function (event) {
+            form.addEventListener('submit', function(event) {
                 if (!form.checkValidity()) {
                     event.preventDefault();
                     event.stopPropagation();
@@ -539,8 +533,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
 
         });
     </script>

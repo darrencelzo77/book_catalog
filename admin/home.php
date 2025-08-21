@@ -623,6 +623,12 @@ if (isset($_SESSION['adminid'])) {
           <li>
             <a onclick="ajax_fn('pages/book.php','ultimate_content');" href="javascript:void();">Books</a>
           </li>
+          <li>
+            <a onclick="ajax_fn('pages/inquiry.php','ultimate_content');" href="javascript:void();">Inquiry</a>
+          </li>
+          <li>
+            <a onclick="ajax_fn('pages/submissions.php','ultimate_content');" href="javascript:void();">Submissions</a>
+          </li>
           </li>
         </ul>
       </div>

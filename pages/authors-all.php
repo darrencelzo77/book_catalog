@@ -175,10 +175,10 @@
                          <a class="nav-link" href="authors">Authors</a>
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link" href="submissions.html">Submission</a>
+                         <a class="nav-link" href="submissions">Submission</a>
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link" href="contacts.html">Contact</a>
+                         <a class="nav-link" href="contacts">Contact</a>
                      </li>
                  </ul>
                  <div class="get-started-btn">

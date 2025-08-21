@@ -136,10 +136,10 @@
                         <a class="nav-link" href="authors">Authors</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="submissions.html">Submission</a>
+                        <a class="nav-link" href="submissions">Submission</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contacts.html">Contact</a>
+                        <a class="nav-link" href="contacts">Contact</a>
                     </li>
                 </ul>
                 <div class="get-started-btn">
@@ -208,49 +208,43 @@
 
                 <!-- Form Container -->
                 <div class="card border-0 shadow-sm p-4">
-                    <form>
+                    <form method="POST" action="../email/email_submission.php">
                         <!-- Personal Information -->
                         <div class="row mb-4">
                             <div class="col-md-6 mb-3">
-                                <label for="firstName" class="form-label fw-bold">First Name <span
-                                        class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="firstName" required>
+                                <label for="firstName" class="form-label fw-bold">First Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="firstName" name="first_name" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="lastName" class="form-label fw-bold">Last Name <span
-                                        class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="lastName" required>
+                                <label for="lastName" class="form-label fw-bold">Last Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="lastName" name="last_name" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="email" class="form-label fw-bold">Email Address <span
-                                        class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="email" required>
+                                <label for="email" class="form-label fw-bold">Email Address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email" name="email_address" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="phone" class="form-label fw-bold">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone">
+                                <input type="tel" class="form-control" id="phone" name="phone_number">
                             </div>
                         </div>
 
                         <!-- Book Information -->
                         <div class="row mb-4">
                             <div class="col-md-8 mb-3">
-                                <label for="bookTitle" class="form-label fw-bold">Book Title <span
-                                        class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="bookTitle" required>
+                                <label for="bookTitle" class="form-label fw-bold">Book Title <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="bookTitle" name="book_title" required>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="wordCount" class="form-label fw-bold">Word Count <span
-                                        class="text-danger">*</span></label>
-                                <input type="number" class="form-control" id="wordCount" placeholder="e.g., 75000"
-                                    required>
+                                <label for="wordCount" class="form-label fw-bold">Word Count <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" id="wordCount" name="word_count" placeholder="e.g., 75000" required>
                             </div>
                         </div>
 
                         <!-- Genre Selection -->
                         <div class="mb-4">
                             <label class="form-label fw-bold">Genre <span class="text-danger">*</span></label>
-                            <select class="form-select" required>
+                            <select class="form-select" name="genre" required>
                                 <option value="" selected disabled>Select a genre</option>
                                 <option value="fiction">Fiction</option>
                                 <option value="non-fiction">Non-Fiction</option>
@@ -265,27 +259,25 @@
 
                         <!-- Text Areas -->
                         <div class="mb-4">
-                            <label for="synopsis" class="form-label fw-bold">Book Synopsis <span
-                                    class="text-danger">*</span> <span class="text-muted">(Max 500
-                                    characters)</span></label>
-                            <textarea class="form-control" id="synopsis" rows="4" maxlength="500"
+                            <label for="synopsis" class="form-label fw-bold">Book Synopsis <span class="text-danger">*</span>
+                                <span class="text-muted">(Max 500 characters)</span></label>
+                            <textarea class="form-control" id="synopsis" name="synopsis" rows="4" maxlength="500"
                                 placeholder="Provide a brief synopsis of your book..." required></textarea>
                             <div class="text-end text-muted"><span id="synopsis-counter">0</span>/500 characters</div>
                         </div>
 
                         <div class="mb-4">
-                            <label for="publications" class="form-label fw-bold">Previous Publications <span
-                                    class="text-muted">(Max 500 characters)</span></label>
-                            <textarea class="form-control" id="publications" rows="3" maxlength="500"
+                            <label for="publications" class="form-label fw-bold">Previous Publications
+                                <span class="text-muted">(Max 500 characters)</span></label>
+                            <textarea class="form-control" id="publications" name="publications" rows="3" maxlength="500"
                                 placeholder="List any previous publications or writing credits..."></textarea>
-                            <div class="text-end text-muted"><span id="publications-counter">0</span>/500 characters
-                            </div>
+                            <div class="text-end text-muted"><span id="publications-counter">0</span>/500 characters</div>
                         </div>
 
                         <div class="mb-4">
-                            <label for="platform" class="form-label fw-bold">Author Platform <span
-                                    class="text-muted">(Max 500 characters)</span></label>
-                            <textarea class="form-control" id="platform" rows="3" maxlength="500"
+                            <label for="platform" class="form-label fw-bold">Author Platform
+                                <span class="text-muted">(Max 500 characters)</span></label>
+                            <textarea class="form-control" id="platform" name="platform" rows="3" maxlength="500"
                                 placeholder="Describe your online presence, social media following, speaking engagements, etc..."></textarea>
                             <div class="text-end text-muted"><span id="platform-counter">0</span>/500 characters</div>
                         </div>
@@ -294,9 +286,11 @@
                             <button type="submit" class="btn btn-primary btn-lg">Submit Manuscript</button>
                         </div>
 
-                        <p class="text-muted mt-3 mb-0 text-center"><small>* Required fields. We'll respond to your
-                                submission within 4-6 weeks.</small></p>
+                        <p class="text-muted mt-3 mb-0 text-center">
+                            <small>* Required fields. We'll respond to your submission within 4-6 weeks.</small>
+                        </p>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -350,7 +344,7 @@
 
     <script>
         // Character counters
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const textareas = {
                 'synopsis': 'synopsis-counter',
                 'publications': 'publications-counter',
@@ -361,7 +355,7 @@
                 const textarea = document.getElementById(textareaId);
                 const counter = document.getElementById(counterId);
 
-                textarea.addEventListener('input', function () {
+                textarea.addEventListener('input', function() {
                     counter.textContent = this.value.length;
                 });
             }
@@ -448,8 +442,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
 
         });
     </script>
