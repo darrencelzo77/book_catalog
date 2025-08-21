@@ -59,7 +59,7 @@
             padding: 80px 0;
         }
 
-   
+
         .card {
             transition: all 0.3s ease;
             overflow: hidden;
@@ -520,7 +520,68 @@
             justify-content: space-between;
             align-items: center;
         }
+
+        .book-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-image-container {
+            height: 180px;
+            /* smaller image height */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .book-image {
+            max-height: 100%;
+            width: auto;
+            object-fit: cover;
+        }
+
+        .book-content {
+            padding: 10px;
+            flex-grow: 1;
+        }
+
+        .book-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .book-author {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        .book-description {
+            font-size: 12px;
+            color: #444;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            max-height: 25px;
+            /* keep only ~2 lines */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .book-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
     </style>
+
 </head>
 
 <body>
@@ -673,7 +734,7 @@
 
                                 <!-- Book Modal -->
                                 <div class="modal fade" id="bookModal<?= $book['bookid'] ?>" tabindex="-1" aria-labelledby="bookModalLabel<?= $book['bookid'] ?>" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-dialog modal-md modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="bookModalLabel<?= $book['bookid'] ?>"><?= htmlspecialchars($book['title']) ?></h5>
