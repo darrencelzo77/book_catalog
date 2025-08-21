@@ -589,6 +589,13 @@ if (isset($_SESSION['adminid'])) {
         });
     }
   </script>
+  <style>
+    .navbar-brand {
+      font-weight: 730;
+      font-size: 1.5rem;
+      color: white;
+    }
+  </style>
 </head>
 
 <body>
@@ -596,7 +603,10 @@ if (isset($_SESSION['adminid'])) {
   <div class="wrapper d-flex align-items-stretch">
     <nav id="sidebar">
       <div class="p-4 pt-5">
-        <a href="#" class="img logo rounded-circle mb-5" style="visibility:hidden; background-image: url(images/logo.jpg);"></a>
+        <a class="navbar-brand" href="#">SCRIPTIFY.</a>
+        <!-- <a href="#" class="img logo rounded-circle mb-2" style="visibility:hidden; background-image: url(images/logo.jpg);"></a> -->
+        <br><br>
+        <br><br>
         <ul class="list-unstyled components mb-5">
           <!-- <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Books</a>

@@ -60,7 +60,7 @@ if (isset($_POST['update_book'])) {
         link = '$link_'
       WHERE id = '$bookid'
     ";
-    echo $sql;
+        echo $sql;
         mysqli_query($db_connection, $sql);
     }
 }
@@ -182,71 +182,7 @@ if (isset($_GET['bookid_get'])) {
     $link_ = '';
 }
 ?>
-<style>
-    .form-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 12px;
-        gap: 12px;
-        flex-wrap: wrap
-    }
 
-    .form-title {
-        color: #1e40ae;
-        font-family: Arial, sans-serif;
-        font-size: 25px;
-        margin: 0
-    }
-
-    .form-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 10px 12px;
-        align-items: end
-    }
-
-    .form-field {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        min-width: 200px
-    }
-
-    .form-field label {
-        font-size: 12px;
-        font-family: Arial;
-        color: #111827
-    }
-
-    .form-field input,
-    .form-field select {
-        padding: 6px 8px;
-        font-size: 12px;
-        border: 1px solid #ccc;
-        border-radius: 4px
-    }
-
-    .form-actions {
-        grid-column: 1/-1;
-        display: flex;
-        gap: 8px;
-        justify-content: flex-end
-    }
-
-    /* .btn {
-        background: #1e40ae;
-        color: #fff;
-        padding: 6px 12px;
-        border-radius: 4px;
-        text-decoration: none;
-        font-size: 12px;
-        font-weight: bold;
-        display: inline-block;
-        border: none;
-        cursor: pointer
-    } */
-</style>
 
 <div class="form-header">
     <h1 class="form-title">Books by Genre &amp; Category</h1>
@@ -401,3 +337,70 @@ if (isset($_GET['bookid_get'])) {
         </tbody>
     </table>
 </div>
+
+
+<style>
+    .form-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        gap: 12px;
+        flex-wrap: wrap
+    }
+
+    .form-title {
+        color: #1e40ae;
+        font-family: Arial, sans-serif;
+        font-size: 25px;
+        margin: 0
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 10px 12px;
+        align-items: end
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 200px
+    }
+
+    .form-field label {
+        font-size: 12px;
+        font-family: Arial;
+        color: #111827
+    }
+
+    .form-field input,
+    .form-field select {
+        padding: 6px 8px;
+        font-size: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px
+    }
+
+    .form-actions {
+        grid-column: 1/-1;
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end
+    }
+
+    /* .btn {
+        background: #1e40ae;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: bold;
+        display: inline-block;
+        border: none;
+        cursor: pointer
+    } */
+</style>

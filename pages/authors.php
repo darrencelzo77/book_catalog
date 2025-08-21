@@ -203,7 +203,7 @@
             FROM tblauthors b
             LEFT JOIN tblbooks a ON a.authorid = b.authorid
             LEFT JOIN tblgenres c ON a.genreid = c.genreid
-            GROUP BY b.authorid, b.author_name, b.details, b.picture_url, c.name LIMIT 0,5";
+            GROUP BY b.authorid, b.author_name, b.details, b.picture_url, c.name LIMIT 0,6";
 
             $rs = mysqli_query($db_connection, $sql);
 
