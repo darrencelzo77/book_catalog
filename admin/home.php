@@ -359,7 +359,76 @@ if (isset($_SESSION['adminid'])) {
       myWindow = window.open(url, 'mywin', param(w, h));
       myWindow.focus();
     }
+// Open modal for add
+function openAddBookModal() {
+  // clear all inputs manually
+  $('#title').val('');
+  $('#genreid').val('');
+  $('#authorid').val('');
+  $('#published_date').val('');
+  $('#description').val('');
+  $('#publisher').val('');
+  $('#rating').val('');
+  $('#review_count').val('');
+  $('#pages').val('');
+  $('#link_').val('');
 
+  $('#bookModalLabel').text('Add Book');
+  $('#bookSaveBtn').hide();
+  $('#bookAddBtn').show();
+  $('.book-modal-lg').modal('show');
+}
+
+// Reset modal on close (when clicking outside or pressing close button)
+$('.book-modal-lg').on('hidden.bs.modal', function () {
+  $('#title').val('');
+  $('#genreid').val('');
+  $('#authorid').val('');
+  $('#published_date').val('');
+  $('#description').val('');
+  $('#publisher').val('');
+  $('#rating').val('');
+  $('#review_count').val('');
+  $('#pages').val('');
+  $('#link_').val('');
+
+  $('#bookModalLabel').text('Add Book');
+  $('#bookSaveBtn').hide();
+  $('#bookAddBtn').show();
+});
+
+    // Open modal for edit
+    function openEditBookModal(bookid) {
+      $.get('pages/book.php', {
+        bookid_get: bookid
+      }, function(html) {
+        // Load the modal form into a hidden div, then copy values
+        var temp = $('<div>').html(html);
+
+        // Grab values (set by PHP echo)
+        $('#title').val(temp.find('#title').val());
+        $('#genreid').val(temp.find('#genreid').val());
+        $('#authorid').val(temp.find('#authorid').val());
+        $('#published_date').val(temp.find('#published_date').val());
+        $('#description').val(temp.find('#description').val());
+        $('#publisher').val(temp.find('#publisher').val());
+        $('#rating').val(temp.find('#rating').val());
+        $('#review_count').val(temp.find('#review_count').val());
+        $('#pages').val(temp.find('#pages').val());
+        $('#link_').val(temp.find('#link_').val());
+
+        // Show modal in update mode
+        $('#bookModalLabel').text('Edit Book');
+        $('#bookAddBtn').hide();
+        $('#bookSaveBtn')
+          .off('click')
+          .on('click', function() {
+            update_book(bookid);
+          })
+          .show();
+        $('.book-modal-lg').modal('show');
+      });
+    }
 
 
 
@@ -434,6 +503,8 @@ if (isset($_SESSION['adminid'])) {
         processData: false,
         success: function(html) {
           $("#ultimate_content").html(html).css('opacity', '1');
+          $('.modal-backdrop').remove();
+          $('body').css('overflow', 'auto');
           alert('Book added.');
         },
         error: function() {
@@ -517,6 +588,8 @@ if (isset($_SESSION['adminid'])) {
         processData: false,
         success: function(html) {
           $("#ultimate_content").html(html).css('opacity', '1');
+          $('.modal-backdrop').remove();
+          $('body').css('overflow', 'auto');
           alert('Book updated.');
         },
         error: function() {
