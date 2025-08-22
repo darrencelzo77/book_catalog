@@ -715,41 +715,38 @@
                                 $hiddenClass = ($count > 4) ? "d-none extra-book" : "";
                             ?>
                                 <div class="col-lg-3 col-md-4 animate__animated animate__fadeInUp book-item <?= $hiddenClass ?>" data-genre="<?= $book['genreid'] ?>">
-                                    <div class="book-card">
-                                        <div class="book-image-container">
-                                            <div class="book-badge"><?= htmlspecialchars($book['genre_name']) ?></div>
-                                            <img src="../admin/pages/picture_book/<?= htmlspecialchars($book['picture_url']) ?>" alt="<?= htmlspecialchars($book['title']) ?>" class="book-image">
-                                        </div>
-                                        <div class="book-content">
-                                            <h3 class="book-title"><?= htmlspecialchars($book['title']) ?></h3>
-                                            <p class="book-author">by <?= htmlspecialchars($book['author_name']) ?></p>
-                                            <p class="book-description"><?= htmlspecialchars(substr($book['description'], 0, 80)) ?>...</p>
-                                            <div class="book-footer d-flex align-items-center justify-content-between">
-                                                <div class="book-rating">
-                                                    <span class="stars">⭐⭐⭐⭐</span>
-                                                    <span><?= htmlspecialchars($book['rating']) ?></span>
-                                                </div>
-
-                                                <div class="d-flex align-items-center">
-                                                    <!-- View Details button -->
-                                                    <button class="book-link btn btn-primary btn-sm me-2"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#bookModal<?= $book['bookid'] ?>">
-                                                        <span style="font-size: 10px;">View Details</span>
-                                                    </button>
-
-                                                    <a href="book-catalog-info.php?bookid=<?php echo $book['bookid'] ?>"
-                                                        target="_self"
-                                                        class="btn btn-outline-secondary btn-sm"
-                                                        title="View Full Details">
-                                                        <i class="bi bi-info-circle"></i>
-                                                    </a>
-
-                                                </div>
+                                    <!-- Make entire card clickable -->
+                                    <a href="book-catalog-info.php?bookid=<?= $book['bookid'] ?>"
+                                        style="text-decoration:none; color:inherit; display:block;">
+                                        <div class="book-card">
+                                            <div class="book-image-container">
+                                                <div class="book-badge"><?= htmlspecialchars($book['genre_name']) ?></div>
+                                                <img src="../admin/pages/picture_book/<?= htmlspecialchars($book['picture_url']) ?>" alt="<?= htmlspecialchars($book['title']) ?>" class="book-image">
                                             </div>
+                                            <div class="book-content">
+                                                <h3 class="book-title"><?= htmlspecialchars($book['title']) ?></h3>
+                                                <p class="book-author">by <?= htmlspecialchars($book['author_name']) ?></p>
+                                                <p class="book-description"><?= htmlspecialchars(substr($book['description'], 0, 80)) ?>...</p>
+                                                <div class="book-footer d-flex align-items-center justify-content-between">
+                                                    <div class="book-rating">
+                                                        <span class="stars">⭐⭐⭐⭐</span>
+                                                        <span><?= htmlspecialchars($book['rating']) ?></span>
+                                                    </div>
 
+                                                    <div class="d-flex align-items-center">
+                                                        <!-- View Details button -->
+                                                        <button class="book-link btn btn-primary btn-sm me-2"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#bookModal<?= $book['bookid'] ?>">
+                                                            <span style="font-size: 10px;">View Details</span>
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
 
                                 <!-- Book Modal -->
