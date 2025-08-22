@@ -43,7 +43,9 @@ $sql = "
     d.authorid,
     d.author_name,
     c.created_at,
-    c.link
+    c.link,
+    c.reviewer,
+    c.review
   FROM tblbooks c
   JOIN tblgenres a      ON c.genreid = a.genreid
   JOIN tblcategories b  ON a.category_id = b.catid
@@ -132,6 +134,14 @@ function valOrNA($v)
             <div style="font-size:13px; color:#374151; line-height:1.5;">
                 <?php echo nl2br(h($book['description'] ?? '')); ?>
             </div>
+        </div>
+
+        <div style="margin-top:14px;">
+            <div style="font-weight:bold; font-size:13px; color:#111827; margin-bottom:6px;">Review</div>
+            <div style="font-size:13px; color:#374151; line-height:1.5;">
+                <?php echo nl2br(h($book['review'] ?? '')); ?>
+            </div>
+            <span style="font-size:12px;">- <?php echo nl2br(h($book['reviewer'] ?? '')); ?></span>
         </div>
     </div>
 </div>

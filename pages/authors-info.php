@@ -1,442 +1,210 @@
- <!DOCTYPE html>
- <html lang="en">
-
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Authors - Scriptify.US</title>
-
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-     <style>
-         :root {
-             --primary: #0d6efd;
-             --primary-dark: #0b5ed7;
-         }
-
-         body {
-             font-family: 'Poppins', sans-serif;
-             color: #333;
-             line-height: 1.6;
-         }
-
-         /* Navigation */
-         .navbar {
-             padding: 20px 0;
-             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-         }
-
-         .navbar-brand {
-             font-weight: 700;
-             font-size: 1.5rem;
-         }
-
-         .nav-link {
-             font-weight: 500;
-             padding: 8px 15px !important;
-             color: #333 !important;
-         }
-
-         .nav-link:hover {
-             color: var(--primary) !important;
-         }
-
-         .navbar-nav {
-             margin: 0 auto;
-             display: flex;
-             justify-content: center;
-         }
-
-         .get-started-btn {
-             position: absolute;
-             right: 15px;
-         }
-
-         .card {
-             transition: transform 0.3s ease;
-         }
-
-         .card:hover {
-             transform: translateY(-5px);
-         }
-
-         .object-fit-cover {
-             object-fit: cover;
-             object-position: top center;
-         }
-
-         .badge {
-             font-size: 0.75rem;
-             font-weight: 500;
-             letter-spacing: 0.5px;
-         }
-
-         /* Emerging Authors Section Styling */
-         .emerging-authors {
-             font-family: 'Poppins', sans-serif;
-             background-color: #f8f9fa;
-         }
-
-         .section-main-title {
-             color: #212529;
-             font-weight: 700;
-         }
-
-         .section-subtitle {
-             color: #6c757d;
-             font-size: 1.1rem;
-         }
-
-         .genre-label {
-             color: #0d6efd;
-             font-weight: 600;
-             font-size: 0.9rem;
-             margin-bottom: 8px;
-         }
-
-         .author-card {
-             background-color: white;
-             border-radius: 8px;
-             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-             height: 100%;
-             display: flex;
-             flex-direction: column;
-             align-items: center;
-         }
-
-         .author-img {
-             width: 80px;
-             height: 80px;
-             border-radius: 50%;
-             object-fit: cover;
-             border: 2px solid #0d6efd;
-         }
-
-         .author-name {
-             color: #212529;
-             font-weight: 600;
-             font-size: 1rem;
-             margin-bottom: 5px;
-         }
-
-         .book-count {
-             color: #6c757d;
-             font-size: 0.8rem;
-             margin-bottom: 5px;
-         }
-
-         .latest-book {
-             color: #212529;
-             font-size: 0.85rem;
-             font-weight: 500;
-             margin-bottom: 10px;
-         }
-
-         .discover-btn {
-             background-color: #0d6efd;
-             color: white;
-             border: none;
-             border-radius: 4px;
-             padding: 5px 10px;
-             font-size: 0.8rem;
-             cursor: pointer;
-             transition: all 0.3s;
-             margin-top: auto;
-         }
-
-         .discover-btn:hover {
-             background-color: #0b5ed7;
-         }
-     </style>
-
-     <!-- Navigation -->
-     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
-         <div class="container position-relative">
-             <a class="navbar-brand" href="#">SCRIPTIFY.</a>
-             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                 <span class="navbar-toggler-icon"></span>
-             </button>
-             <div class="collapse navbar-collapse" id="navbarNav">
-                 <ul class="navbar-nav">
-                     <li class="nav-item">
-                         <a class="nav-link active" href="../">Home</a>
-                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="book-catalog">Book Catalog</a>
-                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="services.html">Services</a>
-                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="plans.html">Plans</a>
-                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="authors">Authors</a>
-                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="submissions">Submission</a>
-                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="contacts">Contact</a>
-                     </li>
-                 </ul>
-                 <div class="get-started-btn">
-                     <a href="#" class="btn btn-primary">Get Started</a>
-                 </div>
-             </div>
-         </div>
-     </nav>
-
-     <!-- Authors Section -->
-     <div class="container my-5">
-         <h1 class="text-center mb-5"><b>Our Authors</b></h1>
-
-         <?php
-            if (file_exists('../admin/includes/systemconfig.php')) include_once('../admin/includes/systemconfig.php');
-
-            // Query: Get authors with their books, genres, and categories
-            $sql = "SELECT b.authorid, b.author_name, b.details, b.picture_url AS author_picture,
-                   COUNT(a.id) AS total_books,
-                   MAX(a.title) AS latest_book,
-                   c.name AS genre_name
-            FROM tblauthors b
-            LEFT JOIN tblbooks a ON a.authorid = b.authorid
-            LEFT JOIN tblgenres c ON a.genreid = c.genreid
-            GROUP BY b.authorid, b.author_name, b.details, b.picture_url, c.name LIMIT 0,6";
-
-            $rs = mysqli_query($db_connection, $sql);
-
-            $authors = [];
-            while ($rw = mysqli_fetch_assoc($rs)) {
-                $authorId = $rw['authorid'];
-
-                if (!isset($authors[$authorId])) {
-                    $authors[$authorId] = [
-                        'name' => $rw['author_name'],
-                        'details' => $rw['details'],
-                        'picture' => $rw['author_picture'],
-                        'total_books' => $rw['total_books'],
-                        'latest_book' => $rw['latest_book'],
-                        'genres' => []
-                    ];
-                }
-
-                if (!empty($rw['genre_name'])) {
-                    $authors[$authorId]['genres'][] = $rw['genre_name'];
-                }
-            }
-            ?>
-
-         <div class="row g-4">
-             <?php foreach ($authors as $authorId => $author): ?>
-                 <div class="col-md-3">
-                     <div class="card h-100 border-0 shadow-sm">
-                         <div class="card-img-top overflow-hidden" style="height: 250px;">
-                             <img src="../admin/pages/picture_author/<?= htmlspecialchars($author['picture']) ?>"
-                                 alt="<?= htmlspecialchars($author['name']) ?>"
-                                 class="img-fluid w-100 h-100 object-fit-cover">
-                         </div>
-                         <div class="card-body">
-                             <?php if (!empty($author['genres'])): ?>
-                                 <span class="badge bg-primary mb-2"><?= htmlspecialchars(implode(", ", $author['genres'])) ?></span>
-                             <?php else: ?>
-                                 <span class="badge bg-secondary mb-2">General</span>
-                             <?php endif; ?>
-                             <h3 class="h5"><?= htmlspecialchars($author['name']) ?></h3>
-                             <p class="card-text"><?= htmlspecialchars(substr($author['details'], 0, 100)) ?>...</p>
-                             <div class="d-flex justify-content-between align-items-center mt-3">
-                                 <span class="text-muted"><?= $author['total_books'] ?> books</span>
-                                 <a target="_blank" href="https://www.google.com/" class="btn btn-sm btn-outline-primary">Reach Out</a>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             <?php endforeach; ?>
-         </div>
-     </div>
-     <div class="text-center mt-4">
-         <a href="authors-all" class="btn btn-primary">View All Authors</a>
-     </div>
-
-
-
-
-     <!-- Emerging Authors Section -->
-     <section class="emerging-authors py-5">
-         <div class="container">
-             <div class="row justify-content-center">
-                 <div class="col-lg-10">
-                     <h1 class="section-main-title mb-4 text-center">Emerging Authors</h1>
-                     <p class="section-subtitle mb-5 text-center">Discover rising talents and fresh voices in literature across various genres.</p>
-
-                     <?php
-                        if (file_exists('../admin/includes/systemconfig.php')) include_once('../admin/includes/systemconfig.php');
-
-                        // Query: Limit to 5 "emerging authors" (example: authors with less than 5 books)
-                        $sql = "SELECT b.authorid, b.author_name, b.details, b.picture_url AS author_picture,
-                            COUNT(a.id) AS total_books,
-                            MAX(a.title) AS latest_book,
-                            c.name AS genre_name
-                        FROM tblauthors b
-                        LEFT JOIN tblbooks a ON a.authorid = b.authorid
-                        LEFT JOIN tblgenres c ON a.genreid = c.genreid
-                        GROUP BY b.authorid, b.author_name, b.details, b.picture_url, c.name
-                        HAVING COUNT(a.id) <= 5
-                        ORDER BY RAND()
-                        LIMIT 5";
-
-                        $rs = mysqli_query($db_connection, $sql);
-
-                        $emerging_authors = [];
-                        while ($rw = mysqli_fetch_assoc($rs)) {
-                            $authorId = $rw['authorid'];
-
-                            if (!isset($emerging_authors[$authorId])) {
-                                $emerging_authors[$authorId] = [
-                                    'name' => $rw['author_name'],
-                                    'details' => $rw['details'],
-                                    'picture' => $rw['author_picture'],
-                                    'total_books' => $rw['total_books'],
-                                    'latest_book' => $rw['latest_book'],
-                                    'genres' => []
-                                ];
-                            }
-
-                            if (!empty($rw['genre_name'])) {
-                                $emerging_authors[$authorId]['genres'][] = $rw['genre_name'];
-                            }
-                        }
-                        ?>
-
-                     <div class="row justify-content-center">
-                         <?php foreach ($emerging_authors as $authorId => $author): ?>
-                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4">
-                                 <div class="genre-label text-center">
-                                     <?= !empty($author['genres']) ? htmlspecialchars(implode(", ", $author['genres'])) : "General" ?>
-                                 </div>
-
-                                 <!-- Flexbox card -->
-                                 <div class="author-card d-flex flex-column text-center p-3 h-100">
-                                     <img src="../admin/pages/picture_author/<?= htmlspecialchars($author['picture']) ?>"
-                                         alt="<?= htmlspecialchars($author['name']) ?>"
-                                         class="author-img mb-3">
-
-                                     <h4 class="author-name"><?= htmlspecialchars($author['name']) ?></h4>
-                                     <div class="book-count"><?= $author['total_books'] ?> Books</div>
-                                     <div class="latest-book mb-3">Latest: <?= htmlspecialchars($author['latest_book']) ?></div>
-
-                                     <!-- Button fixed to bottom -->
-                                     <div class="mt-auto">
-                                         <a href="authors-all?author=<?= $authorId ?>"
-                                             class="discover-btn btn btn-outline-primary btn-sm w-100">
-                                             Discover Books
-                                         </a>
-                                     </div>
-                                 </div>
-                             </div>
-                         <?php endforeach; ?>
-                     </div>
-
-                 </div>
-             </div>
-         </div>
-
-         <div class="process-cta text-center mt-5 animate__animated animate__fadeIn animate__delay-0.1s">
-             <h3 class="cta-title">Become a Published Author</h3>
-             <p class="cta-subtitle">
-                 Join our community of successful authors and share your story with the world.
-             </p>
-             <a href="#" class="btn btn-primary mt-3">Submit Your Manuscript</a>
-         </div>
-     </section>
-
-
-
-
-
-     <!-- Footer Section -->
-     <footer class="bg-dark text-white pt-5 pb-4">
-         <div class="container">
-             <div class="row">
-                 <!-- About Column -->
-                 <div class="col-lg-4 mb-4">
-                     <h4 class="text-uppercase mb-4">SCRIPTIFY.</h4>
-                     <p class="mb-4">Helping authors showcase their awesome books to the world with professional publishing services.</p>
-                     <address>
-                         <p class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i> 1915 5th Avenue</p>
-                         <p class="mb-1"> New York, NY 10001</p>
-                         <p><i class="bi bi-envelope-fill me-2"></i> info@scriptify.com</p>
-                     </address>
-                 </div>
-
-                 <!-- Services Column -->
-                 <div class="col-md-4 col-lg-2 mb-4">
-                     <h4 class="text-uppercase mb-4">Services</h4>
-                     <ul class="list-unstyled">
-                         <li class="mb-2"><a href="#" class="text-white text-decoration-none">Book Publishing</a></li>
-                         <li class="mb-2"><a href="#" class="text-white text-decoration-none">Editorial Services</a></li>
-                         <li class="mb-2"><a href="#" class="text-white text-decoration-none">Cover Design</a></li>
-                         <li class="mb-2"><a href="#" class="text-white text-decoration-none">Marketing</a></li>
-                         <li><a href="#" class="text-white text-decoration-none">Distribution</a></li>
-                     </ul>
-                 </div>
-
-                 <!-- Resources Column -->
-                 <div class="col-md-4 col-lg-2 mb-4">
-                     <h4 class="text-uppercase mb-4">Resources</h4>
-                     <ul class="list-unstyled">
-                         <li class="mb-2"><a href="#" class="text-white text-decoration-none">Book Catalog</a></li>
-                         <li class="mb-2"><a href="#" class="text-white text-decoration-none">Author Profiles</a></li>
-                         <li class="mb-2"><a href="#" class="text-white text-decoration-none">Submission Guidelines</a></li>
-                         <li><a href="#" class="text-white text-decoration-none">Publishing Plans</a></li>
-                     </ul>
-                 </div>
-
-                 <!-- Connect Column -->
-                 <div class="col-md-4 col-lg-2 mb-4">
-                     <h4 class="text-uppercase mb-4">Connect</h4>
-                     <ul class="list-unstyled">
-                         <li class="mb-2"><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
-                         <li class="mb-2"><a href="#" class="text-white text-decoration-none">Newsletter</a></li>
-                         <li class="mb-2"><a href="#" class="text-white text-decoration-none">Blog</a></li>
-                         <li><a href="#" class="text-white text-decoration-none">Support</a></li>
-                     </ul>
-                 </div>
-
-                 <!-- Social Media Column -->
-                 <div class="col-lg-2 mb-4">
-                     <h4 class="text-uppercase mb-4">Follow Us</h4>
-                     <div class="d-flex gap-3">
-                         <a href="#" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
-                         <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
-                         <a href="#" class="text-white fs-5"><i class="bi bi-linkedin"></i></a>
-                     </div>
-                 </div>
-             </div>
-
-             <hr class="my-4">
-
-             <div class="row">
-                 <div class="col-md-6 text-center text-md-start">
-                     <p class="mb-0">© 2025 Scriptify.US. All rights reserved.</p>
-                 </div>
-                 <div class="col-md-6 text-center text-md-end">
-                     <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
-                     <a href="#" class="text-white text-decoration-none me-3">Terms of Service</a>
-                     <a href="#" class="text-white text-decoration-none">Cookie Policy</a>
-                 </div>
-             </div>
-         </div>
-     </footer>
-
-
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-     <script>
-         document.addEventListener('DOMContentLoaded', function() {
-
-         });
-     </script>
-     </body>
-
- </html>
+<?php
+if (file_exists('../admin/includes/systemconfig.php')) {
+    include_once('../admin/includes/systemconfig.php');
+}
+
+// Simple helper to safely echo
+function e($v)
+{
+    return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8');
+}
+
+if (!isset($_GET['authorid'])) {
+    http_response_code(400);
+    die('Author not specified.');
+}
+
+$authorId = (int)($_GET['authorid'] ?? 0);
+
+// --- Fetch Author Info ---
+$author = null;
+if ($stmt = mysqli_prepare($db_connection, "SELECT authorid, author_name, details, picture_url FROM tblauthors WHERE authorid = ? LIMIT 1")) {
+    mysqli_stmt_bind_param($stmt, 'i', $authorId);
+    mysqli_stmt_execute($stmt);
+    $res = mysqli_stmt_get_result($stmt);
+    $author = mysqli_fetch_assoc($res);
+    mysqli_stmt_close($stmt);
+}
+
+if (!$author) {
+    http_response_code(404);
+    die('Author not found.');
+}
+
+// --- Count books ---
+$totalBooks = 0;
+if ($stmt = mysqli_prepare($db_connection, "SELECT COUNT(*) AS total FROM tblbooks WHERE authorid = ?")) {
+    mysqli_stmt_bind_param($stmt, 'i', $authorId);
+    mysqli_stmt_execute($stmt);
+    $res = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($res);
+    $totalBooks = (int)($row['total'] ?? 0);
+    mysqli_stmt_close($stmt);
+}
+
+// --- Fetch Books ---
+$books = [];
+if ($stmt = mysqli_prepare(
+    $db_connection,
+    "SELECT 
+        c.id,
+        c.title,
+        c.description,
+        c.published_date,
+        c.pages,
+        c.isbn,
+        c.publisher,
+        c.language,
+        c.picture_url,
+        c.rating,
+        c.review_count,
+        c.link,
+        g.name  AS genre_name,
+        cat.name AS category_name
+     FROM tblbooks c
+     LEFT JOIN tblgenres g    ON c.genreid = g.genreid
+     LEFT JOIN tblcategories cat ON g.category_id = cat.catid
+     WHERE c.authorid = ?
+     ORDER BY c.created_at DESC"
+)) {
+    mysqli_stmt_bind_param($stmt, 'i', $authorId);
+    mysqli_stmt_execute($stmt);
+    $res = mysqli_stmt_get_result($stmt);
+    while ($row = mysqli_fetch_assoc($res)) {
+        $books[] = $row;
+    }
+    mysqli_stmt_close($stmt);
+}
+
+// Utility: short text
+function excerpt($text, $limit = 160)
+{
+    $text = trim((string)$text);
+    $text = strip_tags($text);
+    if (function_exists('mb_strimwidth')) {
+        return mb_strimwidth($text, 0, $limit, '…', 'UTF-8');
+    }
+    return (strlen($text) > $limit) ? substr($text, 0, $limit - 2) . '…' : $text;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Author Info — <?= e($author['author_name']) ?></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .avatar {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .book-cover {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .badge-soft {
+            background: #eef2ff;
+            color: #3730a3;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <div class="container py-4">
+
+
+        <!-- Author Header -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <div class="d-flex align-items-start gap-3">
+                    <img src="../admin/pages/picture_author/<?= e($author['picture_url'] ?: 'default-avatar.png') ?>" alt="Author" class="rounded avatar border">
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between">
+                            <h2 class="h4 mb-1"><?= e($author['author_name']) ?></h2>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="text-muted small me-2"><?= $totalBooks ?> books</span>
+                                <a target="_blank" href="contact-author.php?authorid=<?= $authorId ?>" class="btn btn-sm btn-outline-primary">Reach Out</a>
+                            </div>
+                        </div>
+                        <?php if (!empty($author['details'])): ?>
+                            <p class="text-muted mb-0 mt-2"><?= nl2br(e($author['details'])) ?></p>
+                        <?php else: ?>
+                            <p class="text-muted mb-0 mt-2 fst-italic">No details provided.</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <?php
+        // Optional in-page search (client-side would also work, but here's server-side quick filter)
+        $q = trim($_GET['q'] ?? '');
+        $filtered = $books;
+        if ($q !== '') {
+            $filtered = array_values(array_filter($books, function ($b) use ($q) {
+                return stripos($b['title'] ?? '', $q) !== false || stripos($b['description'] ?? '', $q) !== false;
+            }));
+        }
+        ?>
+
+        <?php if (empty($filtered)): ?>
+            <div class="alert alert-light border d-flex align-items-center" role="alert">
+                <div>No books found<?= $q ? ' for "' . e($q) . '"' : '' ?>.</div>
+            </div>
+        <?php else: ?>
+            <div class="row">
+                <?php foreach ($filtered as $book): ?>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="../admin/pages/picture_book/<?= e($book['picture_url'] ?: 'default-book.png') ?>" class="card-img-top book-cover" alt="Book cover">
+                            <div class="card-body">
+                                <h5 class="card-title mb-1"><?= e($book['title']) ?></h5>
+                                <div class="mb-2">
+                                    <?php if (!empty($book['genre_name'])): ?>
+                                        <span class="badge badge-soft me-1"><?= e($book['genre_name']) ?></span>
+                                    <?php endif; ?>
+                                    <?php if (!empty($book['category_name'])): ?>
+                                        <span class="badge bg-light text-secondary border"><?= e($book['category_name']) ?></span>
+                                    <?php endif; ?>
+                                </div>
+                                <p class="card-text text-muted small mb-2"><?= e(excerpt($book['description'] ?? '')) ?></p>
+                                <ul class="list-unstyled small text-muted mb-0">
+                                    <?php if (!empty($book['published_date'])): ?>
+                                        <li>Published: <?= e($book['published_date']) ?></li>
+                                    <?php endif; ?>
+                                    <?php if (!empty($book['publisher'])): ?>
+                                        <li>Publisher: <?= e($book['publisher']) ?></li>
+                                    <?php endif; ?>
+                                    <?php if (!empty($book['language'])): ?>
+                                        <li>Language: <?= e($book['language']) ?></li>
+                                    <?php endif; ?>
+                                </ul>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between align-items-center">
+                                <small class="text-muted">Rating: <?= e($book['rating']) ?> (<?= (int)$book['review_count'] ?>)</small>
+                                <?php if (!empty($book['link'])): ?>
+                                    <!-- <a href="<?= e($book['link']) ?>" target="_blank" class="btn btn-sm btn-outline-primary">Read More</a> -->
+                                <?php else: ?>
+                                    <a href="book.php?id=<?= (int)$book['id'] ?>" class="btn btn-sm btn-outline-secondary">Details</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

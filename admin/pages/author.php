@@ -54,7 +54,7 @@ $result = mysqli_query($db_connection, "SELECT authorid, author_name, details FR
 
     <label style="font-size:12px; font-family:Arial;">Details:</label>
     <input type="text" id="details"
-      style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px; width:180px;">
+      style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px; width:700px;">
 
     <a onclick="add_author();"
       style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;">

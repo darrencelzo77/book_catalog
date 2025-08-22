@@ -28,6 +28,8 @@ if (isset($_POST['update_book'])) {
     $rating         = isset($_POST['rating']) ? $_POST['rating'] : '';
     $review_count   = isset($_POST['review_count']) ? $_POST['review_count'] : '';
     $pages          = isset($_POST['pages']) ? $_POST['pages'] : '';
+    $review          = isset($_POST['review']) ? $_POST['review'] : '';
+    $reviewer          = isset($_POST['reviewer']) ? $_POST['reviewer'] : '';
     $link_          = isset($_POST['link_']) ? $_POST['link_'] : '';
 
     if ($bookid !== '' && $title !== '' && $genreid !== '0') {
@@ -57,7 +59,9 @@ if (isset($_POST['update_book'])) {
         publisher = '$publisher',
         rating = $rating_sql,
         review_count = $review_count_sql,
-        link = '$link_'
+        link = '$link_',
+        reviewer = '$reviewer',
+        review = '$review'
       WHERE id = '$bookid'
     ";
         // echo $sql;
@@ -86,6 +90,8 @@ if (isset($_POST['add_book'])) {
     $review_count   = isset($_POST['review_count']) ? $_POST['review_count'] : '';
     $pages          = isset($_POST['pages']) ? $_POST['pages'] : '';
     $link_          = isset($_POST['link_']) ? $_POST['link_'] : '';
+    $review          = isset($_POST['review']) ? $_POST['review'] : '';
+    $reviewer          = isset($_POST['reviewer']) ? $_POST['reviewer'] : '';
     $isbn = GenerateRandomString(10);
 
     if ($title !== '' && $genreid !== '0') {
@@ -111,9 +117,9 @@ if (isset($_POST['add_book'])) {
         // Build INSERT (keeping your minimal style; no escaping)
         $sql = "
       INSERT INTO tblbooks
-        (genreid, title, authorid, description, published_date, pages, publisher, rating, review_count, isbn, link)
+        (genreid, title, authorid, description, published_date, pages, publisher, rating, review_count, isbn, link, review, reviewer)
       VALUES
-        ('$genreid', '$title', $authorid_sql, '$description', $published_date_sql, $pages_sql, '$publisher', $rating_sql, $review_count_sql, '$isbn', '$link_')
+        ('$genreid', '$title', $authorid_sql, '$description', $published_date_sql, $pages_sql, '$publisher', $rating_sql, $review_count_sql, '$isbn', '$link_', '$review','$reviewer')
     ";
 
         mysqli_query($db_connection, $sql);
@@ -150,7 +156,9 @@ $result = mysqli_query(
       c.rating,
       c.review_count,
       c.created_at,
-      c.link
+      c.link,
+      c.reviewer,
+      c.review
     FROM tblgenres a
     JOIN tblcategories b ON a.category_id = b.catid
     JOIN tblbooks c      ON c.genreid = a.genreid
@@ -175,6 +183,8 @@ if (isset($_GET['bookid_get'])) {
     $review_count_ = GetValue('select review_count from tblbooks where id=' . $_GET['bookid_get']);
     $pages_ = GetValue('select pages from tblbooks where id=' . $_GET['bookid_get']);
     $link_ = GetValue('select link from tblbooks where id=' . $_GET['bookid_get']);
+    $reviewer_ = GetValue('select reviewer from tblbooks where id=' . $_GET['bookid_get']);
+    $review_ = GetValue('select review from tblbooks where id=' . $_GET['bookid_get']);
 } else {
     $authorid_ = 0;
     $genreid_ = 0;
@@ -331,6 +341,16 @@ if (isset($_GET['bookid_get'])) {
                     <div class="form-group">
                         <label for="description">Description:</label>
                         <input type="text" id="description" value="<?php echo $descrpition_; ?>" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Review:</label>
+                        <input type="text" id="review" value="<?php echo $review_; ?>" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Reviewer:</label>
+                        <input type="text" id="reviewer" value="<?php echo $reviewer_; ?>" class="form-control">
                     </div>
 
                     <div class="form-group">

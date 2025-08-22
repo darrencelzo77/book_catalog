@@ -247,7 +247,7 @@
                              <p class="card-text"><?= htmlspecialchars(substr($author['details'], 0, 100)) ?>...</p>
                              <div class="d-flex justify-content-between align-items-center mt-3">
                                  <span class="text-muted"><?= $author['total_books'] ?> books</span>
-                                 <a target="_blank" href="authors-info" class="btn btn-sm btn-outline-primary">Reach Out</a>
+                                 <a target="_blank" href="authors-info?authorid=<?php echo $authorId; ?>" class="btn btn-sm btn-outline-primary">Reach Out</a>
                              </div>
                          </div>
                      </div>

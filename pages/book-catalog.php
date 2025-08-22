@@ -724,10 +724,30 @@
                                             <h3 class="book-title"><?= htmlspecialchars($book['title']) ?></h3>
                                             <p class="book-author">by <?= htmlspecialchars($book['author_name']) ?></p>
                                             <p class="book-description"><?= htmlspecialchars(substr($book['description'], 0, 80)) ?>...</p>
-                                            <div class="book-footer">
-                                                <div class="book-rating"><span class="stars">⭐⭐⭐⭐</span> <span><?= htmlspecialchars($book['rating']) ?></span></div>
-                                                <button class="book-link btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#bookModal<?= $book['bookid'] ?>">View Details</button>
+                                            <div class="book-footer d-flex align-items-center justify-content-between">
+                                                <div class="book-rating">
+                                                    <span class="stars">⭐⭐⭐⭐</span>
+                                                    <span><?= htmlspecialchars($book['rating']) ?></span>
+                                                </div>
+
+                                                <div class="d-flex align-items-center">
+                                                    <!-- View Details button -->
+                                                    <button class="book-link btn btn-primary btn-sm me-2"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#bookModal<?= $book['bookid'] ?>">
+                                                        <span style="font-size: 10px;">View Details</span>
+                                                    </button>
+
+                                                    <a href="book-catalog-info.php?bookid=<?php echo $book['bookid'] ?>"
+                                                        target="_self"
+                                                        class="btn btn-outline-secondary btn-sm"
+                                                        title="View Full Details">
+                                                        <i class="bi bi-info-circle"></i>
+                                                    </a>
+
+                                                </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>

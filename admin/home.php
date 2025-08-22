@@ -371,6 +371,8 @@ if (isset($_SESSION['adminid'])) {
       $('#rating').val('');
       $('#review_count').val('');
       $('#pages').val('');
+      $('#review').val('');
+      $('#reviewer').val('');
       $('#link_').val('');
 
       $('#bookModalLabel').text('Add Book');
@@ -390,6 +392,8 @@ if (isset($_SESSION['adminid'])) {
       $('#rating').val('');
       $('#review_count').val('');
       $('#pages').val('');
+      $('#review').val('');
+      $('#reviewer').val('');
       $('#link_').val('');
 
       $('#bookModalLabel').text('Add Book');
@@ -414,6 +418,9 @@ if (isset($_SESSION['adminid'])) {
         $('#publisher').val(temp.find('#publisher').val());
         $('#rating').val(temp.find('#rating').val());
         $('#review_count').val(temp.find('#review_count').val());
+        $('#pages').val(temp.find('#pages').val());
+        $('#review').val(temp.find('#review').val());
+        $('#reviewer').val(temp.find('#reviewer').val());
         $('#pages').val(temp.find('#pages').val());
         $('#link_').val(temp.find('#link_').val());
 
@@ -442,6 +449,8 @@ if (isset($_SESSION['adminid'])) {
       var rating = (document.getElementById('rating')?.value || '').trim();
       var review_count = (document.getElementById('review_count')?.value || '').trim();
       var pages = (document.getElementById('pages')?.value || '').trim();
+      var reviewer = (document.getElementById('reviewer')?.value || '').trim();
+      var review = (document.getElementById('review')?.value || '').trim();
       var link_ = (document.getElementById('link_')?.value || '').trim();
 
       if (!title) {
@@ -493,6 +502,8 @@ if (isset($_SESSION['adminid'])) {
       form.append('rating', rating);
       form.append('review_count', review_count);
       form.append('pages', pages);
+      form.append('reviewer', reviewer);
+      form.append('review', review);
       form.append('link_', link_);
 
       $.ajax({
@@ -515,6 +526,9 @@ if (isset($_SESSION['adminid'])) {
 
     function update_book(bookid) {
       if (!bookid) return;
+
+      var reviewer = (document.getElementById('reviewer')?.value || '').trim();
+      var review = (document.getElementById('review')?.value || '').trim();
 
       var title = (document.getElementById('title')?.value || '').trim();
       var genreid = document.getElementById('genreid')?.value || '0';
@@ -578,6 +592,10 @@ if (isset($_SESSION['adminid'])) {
       form.append('rating', rating);
       form.append('review_count', review_count);
       form.append('pages', pages);
+      form.append('reviewer', reviewer);
+      form.append('review', review);
+
+
       form.append('link_', link_);
 
       $.ajax({
