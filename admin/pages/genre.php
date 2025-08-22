@@ -62,45 +62,53 @@ if (isset($_GET['genreid_get'])) {
 }
 ?>
 
+
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
   <h1 style="color:#1e40ae; font-family:Arial, sans-serif; font-size:22px; margin:0;">Genres</h1>
 
-  <!-- Inline add form (AJAX) -->
-  <form onsubmit="return false;" style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-    <label style="font-size:12px; font-family:Arial;">Genre:</label>
-    <input type="text" id="genre_name" value="<?php echo $name_g; ?>" required
-      style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
+  <!-- Inline add form + search -->
+  <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+    <form onsubmit="return false;" style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+      <label style="font-size:12px; font-family:Arial;">Genre:</label>
+      <input type="text" id="genre_name" value="<?php echo $name_g; ?>" required
+        style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
 
-    <label style="font-size:12px; font-family:Arial;">Category:</label>
-    <select id="catid" style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
-      <option value="0" style="color: gray">Select Category</option>
-      <?php while ($c = mysqli_fetch_assoc($cats)) {
-        $selected = ($idx == $c['catid']) ? 'selected' : '';
-      ?>
-        <option value="<?php echo $c['catid']; ?>" <?php echo $selected; ?>>
-          <?php echo htmlspecialchars($c['name']); ?>
-        </option>
-      <?php } ?>
-    </select>
+      <label style="font-size:12px; font-family:Arial;">Category:</label>
+      <select id="catid" style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
+        <option value="0" style="color: gray">Select Category</option>
+        <?php while ($c = mysqli_fetch_assoc($cats)) {
+          $selected = ($idx == $c['catid']) ? 'selected' : '';
+        ?>
+          <option value="<?php echo $c['catid']; ?>" <?php echo $selected; ?>>
+            <?php echo htmlspecialchars($c['name']); ?>
+          </option>
+        <?php } ?>
+      </select>
+
+      <?php if (isset($_GET['genreid_get'])): ?>
+        <a onclick="update_genre(<?php echo (int)$_GET['genreid_get']; ?>);"
+          style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;">
+          + Update
+        </a>
+      <?php else: ?>
+        <a onclick="add_genre();"
+          style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;">
+          + Add
+        </a>
+      <?php endif; ?>
+    </form>
+
+    <!-- Search box -->
+    <input type="text" id="searchGenre" placeholder="Search genre..."
+      onkeyup="searchGenre()"
+      style="padding:6px 10px; font-size:12px; border:1px solid #ccc; border-radius:4px; width:200px;">
+  </div>
+</div>
 
 
-    <?php if (isset($_GET['genreid_get'])): ?>
-      <a onclick="update_genre(<?php echo (int)$_GET['genreid_get']; ?>);"
-        style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;">
-        + Update
-      </a>
-    <?php else: ?>
-      <a onclick="add_genre();"
-        style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;">
-        + Add
-      </a>
-    <?php endif; ?>
 
 
-
-
-
-  </form>
+</form>
 </div>
 
 <div style="width:100%; overflow-x:auto;">

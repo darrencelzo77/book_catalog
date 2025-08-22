@@ -43,10 +43,9 @@ if (isset($_POST['add'])) {
 $result = mysqli_query($db_connection, "SELECT authorid, author_name, details FROM tblauthors");
 ?>
 
-<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+<!-- <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
   <h1 style="color:#1e40ae; font-family:Arial, sans-serif; font-size:22px; margin:0;">Book Authors</h1>
 
-  <!-- Inline add form -->
   <form style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
     <label style="font-size:12px; font-family:Arial;">Author Name:</label>
     <input type="text" id="author_name" required
@@ -60,7 +59,35 @@ $result = mysqli_query($db_connection, "SELECT authorid, author_name, details FR
       style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;">
       + Add
     </a>
+</div> -->
+
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+  <h1 style="color:#1e40ae; font-family:Arial, sans-serif; font-size:22px; margin:0;">Book Authors</h1>
+
+  <!-- Inline add + search -->
+  <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+    <form style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+      <label style="font-size:12px; font-family:Arial;">Author Name:</label>
+      <input type="text" id="author_name" required
+        style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
+
+      <label style="font-size:12px; font-family:Arial;">Details:</label>
+      <input type="text" id="details"
+        style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px; width:400px;">
+
+      <a onclick="add_author();"
+        style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;">
+        + Add
+      </a>
+    </form>
+
+    <!-- Search box -->
+    <input type="text" id="searchBox" placeholder="Search author..."
+      onkeyup="searchAuthor()"
+      style="padding:6px 10px; font-size:12px; border:1px solid #ccc; border-radius:4px; width:180px;">
+  </div>
 </div>
+
 
 <table style="font-size:11px; width:100%; border-collapse:collapse; margin-top:10px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.05); font-family:Arial, sans-serif;">
   <thead style="background:#1e40ae; color:#fff;">

@@ -41,10 +41,9 @@ if (isset($_POST['update_cat'])) {
 $result = mysqli_query($db_connection, "SELECT catid, name FROM tblcategories");
 ?>
 
-<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+<!-- <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
   <h1 style="color:#1e40ae; font-family:Arial, sans-serif; font-size:22px; margin:0;">Categories</h1>
 
-  <!-- Inline add (no page reload) -->
   <form onsubmit="return false;" style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
     <label style="font-size:12px; font-family:Arial;">Category:</label>
     <input type="text" id="category_name" required
@@ -55,7 +54,31 @@ $result = mysqli_query($db_connection, "SELECT catid, name FROM tblcategories");
       + Add
     </a>
   </form>
+</div> -->
+
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+  <h1 style="color:#1e40ae; font-family:Arial, sans-serif; font-size:22px; margin:0;">Categories</h1>
+
+  <!-- Inline add + search -->
+  <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+    <form onsubmit="return false;" style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+      <label style="font-size:12px; font-family:Arial;">Category:</label>
+      <input type="text" id="category_name" required
+        style="padding:4px 6px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
+
+      <a onclick="add_category();"
+        style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;">
+        + Add
+      </a>
+    </form>
+
+    <!-- Search box -->
+    <input type="text" id="searchCategory" placeholder="Search category..."
+      onkeyup="searchCategory()"
+      style="padding:6px 10px; font-size:12px; border:1px solid #ccc; border-radius:4px; width:180px;">
+  </div>
 </div>
+
 
 <table style="font-size:11px; width:100%; border-collapse:collapse; margin-top:10px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.05); font-family:Arial, sans-serif;">
   <thead style="background:#1e40ae; color:#fff;">

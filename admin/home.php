@@ -639,6 +639,136 @@ if (isset($_SESSION['adminid'])) {
         }
       });
     }
+
+
+
+
+
+
+
+
+    function searchAuthor() {
+      var input = document.getElementById("searchBox");
+      var filter = input.value.toLowerCase();
+      var table = document.querySelector("table tbody");
+      var tr = table.getElementsByTagName("tr");
+
+      for (var i = 0; i < tr.length; i++) {
+        let tdName = tr[i].getElementsByTagName("td")[1]; // Author Name column
+        let tdDetails = tr[i].getElementsByTagName("td")[2]; // Details column
+        if (tdName || tdDetails) {
+          let nameText = tdName.textContent || tdName.innerText;
+          let detailsText = tdDetails.textContent || tdDetails.innerText;
+          if (nameText.toLowerCase().indexOf(filter) > -1 ||
+            detailsText.toLowerCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+
+    function searchCategory() {
+      var input = document.getElementById("searchCategory");
+      var filter = input.value.toLowerCase();
+      var table = document.querySelector("table tbody");
+      var tr = table.getElementsByTagName("tr");
+
+      for (var i = 0; i < tr.length; i++) {
+        let tdName = tr[i].getElementsByTagName("td")[1]; // Category Name column
+        if (tdName) {
+          let txtValue = tdName.textContent || tdName.innerText;
+          if (txtValue.toLowerCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+
+    function searchGenre() {
+      var input = document.getElementById("searchGenre");
+      var filter = input.value.toLowerCase();
+      var table = document.querySelector("table tbody");
+      var tr = table.getElementsByTagName("tr");
+
+      for (var i = 0; i < tr.length; i++) {
+        let tdGenre = tr[i].getElementsByTagName("td")[1]; // Genre column
+        let tdCat = tr[i].getElementsByTagName("td")[2]; // Category column
+        if (tdGenre || tdCat) {
+          let genreText = tdGenre.textContent || tdGenre.innerText;
+          let catText = tdCat.textContent || tdCat.innerText;
+          if (genreText.toLowerCase().indexOf(filter) > -1 ||
+            catText.toLowerCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+
+    function searchBook() {
+      var input = document.getElementById("searchBook");
+      var filter = input.value.toLowerCase();
+      var table = document.querySelector("table tbody");
+      var tr = table.getElementsByTagName("tr");
+
+      for (var i = 0; i < tr.length; i++) {
+        let tdTitle = tr[i].getElementsByTagName("td")[1]; // Title
+        let tdAuthor = tr[i].getElementsByTagName("td")[2]; // Author
+        let tdGenre = tr[i].getElementsByTagName("td")[3]; // Genre
+        let tdCat = tr[i].getElementsByTagName("td")[4]; // Category
+        if (tdTitle || tdAuthor || tdGenre || tdCat) {
+          let text = (tdTitle.textContent + " " + tdAuthor.textContent + " " +
+            tdGenre.textContent + " " + tdCat.textContent).toLowerCase();
+          if (text.indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+
+    function searchManuscript() {
+      var input = document.getElementById("searchManuscript");
+      var filter = input.value.toLowerCase();
+      var table = document.querySelector("table tbody");
+      var tr = table.getElementsByTagName("tr");
+
+      for (var i = 0; i < tr.length; i++) {
+        let tdAuthor = tr[i].getElementsByTagName("td")[1]; // Author
+        let tdEmail = tr[i].getElementsByTagName("td")[2]; // Email
+        let tdPhone = tr[i].getElementsByTagName("td")[3]; // Phone
+        let tdTitle = tr[i].getElementsByTagName("td")[4]; // Book Title
+        let tdGenre = tr[i].getElementsByTagName("td")[6]; // Genre
+        if (tdAuthor || tdEmail || tdPhone || tdTitle || tdGenre) {
+          let text = (tdAuthor.textContent + " " +
+            tdEmail.textContent + " " +
+            tdPhone.textContent + " " +
+            tdTitle.textContent + " " +
+            tdGenre.textContent).toLowerCase();
+          if (text.indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+
+    function searchTable() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#dataTable tbody tr");
+
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(input) ? "" : "none";
+      });
+    }
   </script>
   <script>
     function uploadBookImage(input) {

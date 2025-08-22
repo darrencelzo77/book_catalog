@@ -31,10 +31,18 @@ function e($v)
 ?>
 
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
-  <h1 style="color:#1e40ae; font-family:Arial, sans-serif; font-size:22px; margin:0;">Manuscripts</h1>
+  <h1 style="color:#1e40ae; font-family:Arial, sans-serif; font-size:22px; margin:0;">Submissions</h1>
+
+  <!-- 🔍 Search box -->
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search submissions..."
+    onkeyup="searchTable()"
+    style="padding:6px 10px; font-size:12px; border:1px solid #ccc; border-radius:4px; width:220px;">
 </div>
 
-<table style="font-size:11px; width:100%; border-collapse:collapse; margin-top:10px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.05); font-family:Arial, sans-serif;">
+<table id="dataTable" style="font-size:11px; width:100%; border-collapse:collapse; margin-top:10px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.05); font-family:Arial, sans-serif;">
   <thead style="background:#1e40ae; color:#fff;">
     <tr>
       <th style="padding:8px 10px; text-align:left;">ID</th>
@@ -44,7 +52,7 @@ function e($v)
       <th style="padding:8px 10px; text-align:left;">Book Title</th>
       <th style="padding:8px 10px; text-align:left;">Word Count</th>
       <th style="padding:8px 10px; text-align:left;">Genre</th>
-      <th style="padding:8px 10px; text-align:left;">Sipnosis & Platform</th>
+      <th style="padding:8px 10px; text-align:left;">Synopsis & Platform</th>
       <th style="padding:8px 10px; text-align:left;">Submitted</th>
     </tr>
   </thead>
@@ -53,18 +61,18 @@ function e($v)
       <?php while ($row = mysqli_fetch_assoc($result)): ?>
         <tr style="border-bottom:1px solid #ddd;">
           <td style="padding:8px 10px;"><?php echo $row['id']; ?></td>
-          <td style="padding:8px 10px;"><?php echo $row['first_name'] . ' ' . $row['last_name']; ?></td>
-          <td style="padding:8px 10px;"><?php echo $row['email_address']; ?></td>
-          <td style="padding:8px 10px;"><?php echo $row['phone_number']; ?></td>
-          <td style="padding:8px 10px;"><?php echo $row['book_title']; ?></td>
-          <td style="padding:8px 10px;"><?php echo number_format($row['word_count']); ?></td>
-          <td style="padding:8px 10px;"><?php echo $row['genre']; ?></td>
+          <td style="padding:8px 10px;"><?php echo e($row['first_name'] . ' ' . $row['last_name']); ?></td>
+          <td style="padding:8px 10px;"><?php echo e($row['email_address']); ?></td>
+          <td style="padding:8px 10px;"><?php echo e($row['phone_number']); ?></td>
+          <td style="padding:8px 10px;"><?php echo e($row['book_title']); ?></td>
+          <td style="padding:8px 10px;"><?php echo number_format((int)$row['word_count']); ?></td>
+          <td style="padding:8px 10px;"><?php echo e($row['genre']); ?></td>
           <td style="padding:8px 10px;">
             <?php
             $syn = e($row['synopsis']);
             $plat = e($row['platform']);
             $combo = trim($syn . ($plat ? ' — ' . $plat : ''));
-            $limit = 80; // adjust as needed
+            $limit = 80;
             $short = mb_substr($combo, 0, $limit) . (mb_strlen($combo) > $limit ? '...' : '');
             ?>
             <a href="javascript:void(0);"
@@ -73,13 +81,17 @@ function e($v)
               <?php echo $short; ?> <em style="color:#1e40ae;">(view)</em>
             </a>
           </td>
-          <td style="padding:8px 10px;"><?php echo $row['submitted_at']; ?></td>
+          <td style="padding:8px 10px;"><?php echo e($row['submitted_at']); ?></td>
         </tr>
       <?php endwhile; ?>
     <?php else: ?>
       <tr>
-        <td colspan="8" style="text-align:center; padding:12px; color:#555;">No manuscripts found.</td>
+        <td colspan="9" style="text-align:center; padding:12px; color:#555;">No manuscripts found.</td>
       </tr>
     <?php endif; ?>
   </tbody>
 </table>
+
+<script>
+  // 🔍 Client-side search function
+</script>

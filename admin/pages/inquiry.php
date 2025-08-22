@@ -21,7 +21,14 @@ if (isset($_SESSION['adminid'])) {
 $result = mysqli_query($db_connection, "SELECT id, inquiry_type, fullname, emailaddress, phonenumber, subject, message, created FROM tblinquiry");
 ?>
 
-<h1 style="color:#1e40ae; font-family:Arial, sans-serif; font-size:22px; margin:15px 0;">Inquiries</h1>
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+  <h1 style="color:#1e40ae; font-family:Arial, sans-serif; font-size:22px; margin:0;">Inquiry</h1>
+
+  <!-- Search box -->
+  <input type="text" id="searchManuscript" placeholder="Search inquiry..."
+    onkeyup="searchManuscript()" 
+    style="padding:6px 10px; font-size:12px; border:1px solid #ccc; border-radius:4px; width:220px;">
+</div>
 
 <table style="font-size:11px; width:100%; border-collapse:collapse; margin-top:10px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.05); font-family:Arial, sans-serif;">
   <thead style="background:#1e40ae; color:#fff;">
