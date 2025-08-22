@@ -88,13 +88,6 @@
              font-size: 1.1rem;
          }
 
-         .genre-label {
-             color: #0d6efd;
-             font-weight: 600;
-             font-size: 0.9rem;
-             margin-bottom: 8px;
-         }
-
          .author-card {
              background-color: white;
              border-radius: 8px;
@@ -147,6 +140,77 @@
 
          .discover-btn:hover {
              background-color: #0b5ed7;
+         }
+
+         /* Emerging Authors Cards */
+         .author-card {
+             background-color: white;
+             border-radius: 8px;
+             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+             height: 100%;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             padding: 1rem;
+         }
+
+         .author-img {
+             width: 80px;
+             height: 80px;
+             border-radius: 50%;
+             object-fit: cover;
+             border: 2px solid #0d6efd;
+             margin-bottom: 1rem;
+         }
+
+         .author-name {
+             font-weight: 600;
+             font-size: 1rem;
+             margin-bottom: .5rem;
+             min-height: 2.2em;
+             /* reserve space for 2 lines max */
+             text-align: center;
+             display: -webkit-box;
+             /* -webkit-line-clamp: 2; */
+             /* max 2 lines */
+             -webkit-box-orient: vertical;
+             overflow: hidden;
+         }
+
+         .book-count {
+             font-size: 0.85rem;
+             color: #6c757d;
+             margin-bottom: .25rem;
+         }
+
+         .latest-book {
+             font-size: 0.9rem;
+             font-weight: 500;
+             margin-bottom: 1rem;
+             min-height: 2.6em;
+             /* keeps this section aligned */
+             display: -webkit-box;
+             /* -webkit-line-clamp: 2; */
+             /* max 2 lines */
+             -webkit-box-orient: vertical;
+             overflow: hidden;
+             text-align: center;
+         }
+
+         .discover-btn {
+             margin-top: auto;
+             /* push button to bottom */
+             border-radius: 6px;
+             font-size: 0.8rem;
+             padding: 6px 10px;
+         }
+
+         .genre-label {
+             font-size: 14px;
+             font-weight: 600;
+             color: #0d6efd;
+             min-height: 70px;
+             /* keeps equal spacing even if some are short */
          }
      </style>
 
@@ -311,23 +375,25 @@
 
                      <div class="row justify-content-center">
                          <?php foreach ($emerging_authors as $authorId => $author): ?>
-                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4">
-                                 <div class="genre-label text-center">
-                                     <?= !empty($author['genres']) ? htmlspecialchars(implode(", ", $author['genres'])) : "General" ?>
-                                 </div>
+                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-4 d-flex">
+                                 <div class="author-card text-center w-100 d-flex flex-column">
 
-                                 <!-- Flexbox card -->
-                                 <div class="author-card d-flex flex-column text-center p-3 h-100">
+                                     <!-- Genre moved INSIDE card -->
+                                     <div class="genre-label mb-2">
+                                         <?= !empty($author['genres']) ? htmlspecialchars(implode(", ", $author['genres'])) : "General" ?>
+                                     </div>
+
+                                     <!-- Keep your existing image -->
                                      <img src="../admin/pages/picture_author/<?= htmlspecialchars($author['picture']) ?>"
                                          alt="<?= htmlspecialchars($author['name']) ?>"
-                                         class="author-img mb-3">
+                                         class="author-img">
 
                                      <h4 class="author-name"><?= htmlspecialchars($author['name']) ?></h4>
                                      <div class="book-count"><?= $author['total_books'] ?> Books</div>
-                                     <div class="latest-book mb-3">Latest: <?= htmlspecialchars($author['latest_book']) ?></div>
+                                     <div class="latest-book">Latest: <?= htmlspecialchars($author['latest_book']) ?></div>
 
-                                     <!-- Button fixed to bottom -->
-                                     <div class="mt-auto">
+                                     <!-- Keep button same -->
+                                     <div class="mt-auto w-100">
                                          <a href="authors-all?author=<?= $authorId ?>"
                                              class="discover-btn btn btn-outline-primary btn-sm w-100">
                                              Discover Books
@@ -335,6 +401,7 @@
                                      </div>
                                  </div>
                              </div>
+
                          <?php endforeach; ?>
                      </div>
 
@@ -342,17 +409,19 @@
              </div>
          </div>
 
-         <div class="process-cta text-center mt-5 animate__animated animate__fadeIn animate__delay-0.1s">
-             <h3 class="cta-title">Become a Published Author</h3>
-             <p class="cta-subtitle">
-                 Join our community of successful authors and share your story with the world.
-             </p>
-             <a href="#" class="btn btn-primary mt-3">Submit Your Manuscript</a>
-         </div>
+
+
+
      </section>
 
-
-
+     <div class="process-cta text-center mt-5 animate__animated animate__fadeIn animate__delay-0.1s">
+         <h3 class="cta-title">Become a Published Author</h3>
+         <p class="cta-subtitle">
+             Join our community of successful authors and share your story with the world.
+         </p>
+         <a href="#" class="btn btn-primary mt-3">Submit Your Manuscript</a>
+     </div>
+     <br><br>
 
 
      <!-- Footer Section -->

@@ -130,8 +130,7 @@ function excerpt($text, $limit = 160)
                             <h2 class="h4 mb-1"><?= e($author['author_name']) ?></h2>
                             <div class="d-flex align-items-center gap-2">
                                 <span class="text-muted small me-2"><?= $totalBooks ?> books</span>
-                                <a target="_blank" href="contact-author.php?authorid=<?= $authorId ?>" class="btn btn-sm btn-outline-primary">Reach Out</a>
-                            </div>
+                                </div>
                         </div>
                         <?php if (!empty($author['details'])): ?>
                             <p class="text-muted mb-0 mt-2"><?= nl2br(e($author['details'])) ?></p>

@@ -947,9 +947,6 @@
                         <a class="nav-link" href="pages/contacts">Contact</a>
                     </li>
                 </ul>
-                <div class="get-started-btn">
-                    <a href="#" class="btn btn-primary">Get Started</a>
-                </div>
             </div>
         </div>
     </nav>
