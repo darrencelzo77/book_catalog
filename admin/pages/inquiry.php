@@ -46,7 +46,15 @@ $result = mysqli_query($db_connection, "SELECT id, inquiry_type, fullname, email
           <td style="padding:8px 10px;"><?php echo htmlspecialchars($row['emailaddress']); ?></td>
           <td style="padding:8px 10px;"><?php echo htmlspecialchars($row['phonenumber']); ?></td>
           <td style="padding:8px 10px;"><?php echo htmlspecialchars($row['subject']); ?></td>
-          <td style="padding:8px 10px;"><?php echo nl2br(htmlspecialchars($row['message'])); ?></td>
+          <td style="padding:8px 10px;">
+            <a href="javascript:void();" onclick="openCustom('pages/inquiry-info?id=<?php echo $row['id']; ?>',500,500);">
+              <?php
+              $msg = htmlspecialchars($row['message']);
+              echo nl2br(substr($msg, 0, 50)) . (strlen($msg) > 50 ? '...' : '');
+              ?>
+              <em style="color:#1e40ae;">(view)</em>
+            </a>
+          </td>
           <td style="padding:8px 10px;"><?php echo htmlspecialchars($row['created']); ?></td>
 
         </tr>

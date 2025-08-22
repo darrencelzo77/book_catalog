@@ -941,10 +941,10 @@
                         <a class="nav-link" href="pages/authors">Authors</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/submissions.html">Submission</a>
+                        <a class="nav-link" href="pages/submissions">Submission</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/contacts.html">Contact</a>
+                        <a class="nav-link" href="pages/contacts">Contact</a>
                     </li>
                 </ul>
                 <div class="get-started-btn">

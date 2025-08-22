@@ -359,43 +359,43 @@ if (isset($_SESSION['adminid'])) {
       myWindow = window.open(url, 'mywin', param(w, h));
       myWindow.focus();
     }
-// Open modal for add
-function openAddBookModal() {
-  // clear all inputs manually
-  $('#title').val('');
-  $('#genreid').val('');
-  $('#authorid').val('');
-  $('#published_date').val('');
-  $('#description').val('');
-  $('#publisher').val('');
-  $('#rating').val('');
-  $('#review_count').val('');
-  $('#pages').val('');
-  $('#link_').val('');
+    // Open modal for add
+    function openAddBookModal() {
+      // clear all inputs manually
+      $('#title').val('');
+      $('#genreid').val('');
+      $('#authorid').val('');
+      $('#published_date').val('');
+      $('#description').val('');
+      $('#publisher').val('');
+      $('#rating').val('');
+      $('#review_count').val('');
+      $('#pages').val('');
+      $('#link_').val('');
 
-  $('#bookModalLabel').text('Add Book');
-  $('#bookSaveBtn').hide();
-  $('#bookAddBtn').show();
-  $('.book-modal-lg').modal('show');
-}
+      $('#bookModalLabel').text('Add Book');
+      $('#bookSaveBtn').hide();
+      $('#bookAddBtn').show();
+      $('.book-modal-lg').modal('show');
+    }
 
-// Reset modal on close (when clicking outside or pressing close button)
-$('.book-modal-lg').on('hidden.bs.modal', function () {
-  $('#title').val('');
-  $('#genreid').val('');
-  $('#authorid').val('');
-  $('#published_date').val('');
-  $('#description').val('');
-  $('#publisher').val('');
-  $('#rating').val('');
-  $('#review_count').val('');
-  $('#pages').val('');
-  $('#link_').val('');
+    // Reset modal on close (when clicking outside or pressing close button)
+    $('.book-modal-lg').on('hidden.bs.modal', function() {
+      $('#title').val('');
+      $('#genreid').val('');
+      $('#authorid').val('');
+      $('#published_date').val('');
+      $('#description').val('');
+      $('#publisher').val('');
+      $('#rating').val('');
+      $('#review_count').val('');
+      $('#pages').val('');
+      $('#link_').val('');
 
-  $('#bookModalLabel').text('Add Book');
-  $('#bookSaveBtn').hide();
-  $('#bookAddBtn').show();
-});
+      $('#bookModalLabel').text('Add Book');
+      $('#bookSaveBtn').hide();
+      $('#bookAddBtn').show();
+    });
 
     // Open modal for edit
     function openEditBookModal(bookid) {
@@ -696,22 +696,34 @@ $('.book-modal-lg').on('hidden.bs.modal', function () {
             </ul>
           </li> -->
           <li>
-            <a onclick="ajax_fn('pages/author.php','ultimate_content');" href="javascript:void();">Author</a>
+            <a onclick="ajax_fn('pages/author.php','ultimate_content');" href="javascript:void();">
+              <i class="fa-solid fa-user"></i> Author
+            </a>
           </li>
           <li>
-            <a onclick="ajax_fn('pages/category.php','ultimate_content');" href="javascript:void();">Category</a>
+            <a onclick="ajax_fn('pages/category.php','ultimate_content');" href="javascript:void();">
+              <i class="fa-solid fa-list"></i> Category
+            </a>
           </li>
           <li>
-            <a onclick="ajax_fn('pages/genre.php','ultimate_content');" href="javascript:void();">Genre</a>
-          <li>
-            <a onclick="ajax_fn('pages/book.php','ultimate_content');" href="javascript:void();">Books</a>
+            <a onclick="ajax_fn('pages/genre.php','ultimate_content');" href="javascript:void();">
+              <i class="fa-solid fa-tags"></i> Genre
+            </a>
           </li>
           <li>
-            <a onclick="ajax_fn('pages/inquiry.php','ultimate_content');" href="javascript:void();">Inquiry</a>
+            <a onclick="ajax_fn('pages/book.php','ultimate_content');" href="javascript:void();">
+              <i class="fa-solid fa-book"></i> Books
+            </a>
           </li>
           <li>
-            <a onclick="ajax_fn('pages/submissions.php','ultimate_content');" href="javascript:void();">Submissions</a>
+            <a onclick="ajax_fn('pages/inquiry.php','ultimate_content');" href="javascript:void();">
+              <i class="fa-solid fa-question-circle"></i> Inquiry
+            </a>
           </li>
+          <li>
+            <a onclick="ajax_fn('pages/submissions.php','ultimate_content');" href="javascript:void();">
+              <i class="fa-solid fa-paper-plane"></i> Submissions
+            </a>
           </li>
         </ul>
       </div>

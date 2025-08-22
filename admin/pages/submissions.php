@@ -24,6 +24,10 @@ $result = mysqli_query($db_connection, "
     book_title, word_count, genre, synopsis, publications, platform, submitted_at 
   FROM tblmanuscripts
 ");
+function e($v)
+{
+  return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8');
+}
 ?>
 
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
@@ -40,6 +44,7 @@ $result = mysqli_query($db_connection, "
       <th style="padding:8px 10px; text-align:left;">Book Title</th>
       <th style="padding:8px 10px; text-align:left;">Word Count</th>
       <th style="padding:8px 10px; text-align:left;">Genre</th>
+      <th style="padding:8px 10px; text-align:left;">Sipnosis & Platform</th>
       <th style="padding:8px 10px; text-align:left;">Submitted</th>
     </tr>
   </thead>
@@ -54,6 +59,20 @@ $result = mysqli_query($db_connection, "
           <td style="padding:8px 10px;"><?php echo $row['book_title']; ?></td>
           <td style="padding:8px 10px;"><?php echo number_format($row['word_count']); ?></td>
           <td style="padding:8px 10px;"><?php echo $row['genre']; ?></td>
+          <td style="padding:8px 10px;">
+            <?php
+            $syn = e($row['synopsis']);
+            $plat = e($row['platform']);
+            $combo = trim($syn . ($plat ? ' — ' . $plat : ''));
+            $limit = 80; // adjust as needed
+            $short = mb_substr($combo, 0, $limit) . (mb_strlen($combo) > $limit ? '...' : '');
+            ?>
+            <a href="javascript:void(0);"
+              onclick="openCustom('pages/submissions-info.php?id=<?php echo (int)$row['id']; ?>', 700, 560);"
+              title="View full submission">
+              <?php echo $short; ?> <em style="color:#1e40ae;">(view)</em>
+            </a>
+          </td>
           <td style="padding:8px 10px;"><?php echo $row['submitted_at']; ?></td>
         </tr>
       <?php endwhile; ?>

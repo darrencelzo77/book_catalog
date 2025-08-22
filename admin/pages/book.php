@@ -185,13 +185,19 @@ if (isset($_GET['bookid_get'])) {
 
 
 <div class="form-header">
-    <h1 class="form-title">Books by Genre &amp; Category</h1>
+    <h1 style="color:#1e40ae; font-family:Arial, sans-serif; font-size:22px; margin:0;">Books by Genre &amp; Category</h1>
+
 </div>
 
 <div align="right">
-  <button type="button" class="btn btn-sm btn-primary mb-3" onclick="openAddBookModal()">
-    <i class="fa fa-plus"></i> Add Book
-  </button>
+    <!-- <button type="button" class="btn btn-sm btn-primary mb-3" onclick="openAddBookModal()">
+        <i class="fa fa-plus"></i> Add Book
+    </button> -->
+
+    <a onclick="openAddBookModal()"
+        style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;">
+        + Add
+    </a>
 </div>
 
 
@@ -357,13 +363,13 @@ if (isset($_GET['bookid_get'])) {
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="bookAddBtn" class="btn btn-primary" onclick="add_book()">
+                <button type="button" id="bookAddBtn" style="background:#1e40ae; color:#fff; padding:6px 12px; border-radius:4px; border:none; cursor:pointer; font-size:12px; font-weight:bold;" onclick="add_book()">
                     <i class="fa fa-plus"></i> Add
                 </button>
-                <button type="button" id="bookSaveBtn" class="btn btn-success" style="display:none;">
+                <button type="button" id="bookSaveBtn" class="btn btn-sm btn-success" style="display:none;">
                     <i class="fa fa-save"></i> Update
                 </button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
             </div>
 
 
