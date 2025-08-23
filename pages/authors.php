@@ -346,9 +346,7 @@
                         LEFT JOIN tblbooks a ON a.authorid = b.authorid
                         LEFT JOIN tblgenres c ON a.genreid = c.genreid
                         GROUP BY b.authorid, b.author_name, b.details, b.picture_url, c.name
-                        HAVING COUNT(a.id) <= 5
-                        ORDER BY RAND()
-                        LIMIT 5";
+                        HAVING COUNT(a.id) <= 5 LIMIT 8";
 
                         $rs = mysqli_query($db_connection, $sql);
 

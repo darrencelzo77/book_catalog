@@ -121,15 +121,11 @@ if (!$book) {
         <a href="book-catalog" class="btn btn-sm btn-outline-secondary mb-3">
             <i class="bi bi-arrow-left"></i> Back to Catalog
         </a>
-
+        <br>
+        <br>
+        <br>
+        <br>
         <!-- Hero -->
-        <div class="book-hero mb-4">
-            <div class="overlay"></div>
-            <div class="hero-text">
-                <h1><?= e($book['title']) ?></h1>
-                <p class="mb-0">By <?= e($book['author_name']) ?></p>
-            </div>
-        </div>
 
         <!-- Book Info Section -->
         <div class="card shadow-sm book-details p-4">
