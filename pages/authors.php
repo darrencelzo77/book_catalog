@@ -322,7 +322,7 @@
      <div class="text-center mt-4">
          <a href="authors-all" class="btn btn-primary">View All Authors</a>
      </div>
-
+     <br><br>
 
 
 
@@ -345,8 +345,9 @@
                         FROM tblauthors b
                         LEFT JOIN tblbooks a ON a.authorid = b.authorid
                         LEFT JOIN tblgenres c ON a.genreid = c.genreid
+                         WHERE b.is_featured = 1
                         GROUP BY b.authorid, b.author_name, b.details, b.picture_url, c.name
-                        HAVING COUNT(a.id) <= 5 LIMIT 8";
+                        HAVING COUNT(a.id) <= 5 LIMIT 8 ";
 
                         $rs = mysqli_query($db_connection, $sql);
 

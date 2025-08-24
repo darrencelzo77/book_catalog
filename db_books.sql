@@ -40,12 +40,13 @@ CREATE TABLE `tblauthors` (
   `author_name` varchar(255) NOT NULL,
   `details` text DEFAULT NULL,
   `picture_url` text DEFAULT NULL,
+  `is_featured` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`authorid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `tblauthors` */
 
-insert  into `tblauthors`(`authorid`,`author_name`,`details`,`picture_url`) values (1,'J.K. Rowling','British author of the Harry Potter series.','20250820_082828.jpg'),(2,'George R.R. Martin','American novelist, Game of Thrones.','20250820_082828.jpg'),(3,'Agatha Christie','Famous mystery and detective novel writer.','20250820_082828.jpg'),(4,'Walter Isaacson','Biographer of Steve Jobs, Einstein.','20250820_082828.jpg'),(5,'Dale Carnegie','Author of How to Win Friends.','20250820_082828.jpg'),(6,'Stephen Hawking','Theoretical physicist, cosmologist.','20250820_082828.jpg'),(7,'Carl Sagan','Astronomer and science communicator.','20250820_082828.jpg'),(8,'Antony Beevor','Military historian.','20250820_082828.jpg'),(9,'Mary Beard','Historian of ancient Rome.','20250820_082828.jpg'),(10,'Hans Christian Andersen','Fairy tale writer.','20250820_082828.jpg'),(11,'Dr. Seuss','Children’s author and cartoonist.','20250820_082828.jpg'),(12,'Robert C. Martin','Software engineer, Uncle Bob.','20250820_082828.jpg'),(13,'Stuart Russell','AI researcher.','20250820_082828.jpg');
+insert  into `tblauthors`(`authorid`,`author_name`,`details`,`picture_url`,`is_featured`) values (1,'J.K. Rowling','British author of the Harry Potter series.','20250820_082828.jpg',0),(2,'George R.R. Martin','American novelist, Game of Thrones.','20250820_082828.jpg',0),(3,'Agatha Christie','Famous mystery and detective novel writer.','20250820_082828.jpg',0),(4,'Walter Isaacson','Biographer of Steve Jobs, Einstein.','20250820_082828.jpg',0),(5,'Dale Carnegie','Author of How to Win Friends.','20250820_082828.jpg',0),(6,'Stephen Hawking','Theoretical physicist, cosmologist.','20250820_082828.jpg',0),(7,'Carl Sagan','Astronomer and science communicator.','20250820_082828.jpg',0),(8,'Antony Beevor','Military historian.','20250820_082828.jpg',0),(9,'Mary Beard','Historian of ancient Rome.','20250820_082828.jpg',0),(10,'Hans Christian Andersen','Fairy tale writer.','20250820_082828.jpg',0),(11,'Dr. Seuss','Children’s author and cartoonist.','20250820_082828.jpg',0),(12,'Robert C. Martin','Software engineer, Uncle Bob.','20250820_082828.jpg',0),(13,'Stuart Russell','AI researcher.','20250820_082828.jpg',0);
 
 /*Table structure for table `tblbooks` */
 

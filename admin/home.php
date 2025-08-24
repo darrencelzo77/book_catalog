@@ -640,6 +640,32 @@ if (isset($_SESSION['adminid'])) {
       });
     }
 
+    function modify_status(authorid, status) {
+      if (!authorid) return;
+      if (!confirm('Update this author?')) return;
+
+      var form = new FormData();
+      form.append('update_author', 1);
+      form.append('authorid', authorid);
+      form.append('status', status); // pass status too
+
+      $.ajax({
+        url: 'pages/featured.php',
+        type: 'POST',
+        data: form,
+        contentType: false,
+        processData: false,
+        success: function(html) {
+          $("#ultimate_content").html(html).css('opacity', '1');
+          alert('Author status updated.');
+        },
+        error: function() {
+          alert('Error updating author.');
+        }
+      });
+    }
+
+
 
 
 
@@ -873,6 +899,13 @@ if (isset($_SESSION['adminid'])) {
               <i class="fa-solid fa-paper-plane"></i> Submissions
             </a>
           </li>
+
+          <li>
+            <a onclick="ajax_fn('pages/featured.php','ultimate_content');" href="javascript:void();">
+              <i class="fa-solid fa-star"></i> Featured Author Setup
+            </a>
+          </li>
+
         </ul>
       </div>
     </nav>
