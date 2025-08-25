@@ -1513,8 +1513,9 @@
                                 <span class="badge bg-light text-dark me-2"><?= $rw['book_count'] ?> Books</span>
                                 <!-- Optional: replace with dynamic awards if available -->
                                 <span class="badge bg-primary text-white">Featured Author</span>
+                                <a href="pages/authors" class="btn btn-outline-primary">View Profile</a>
                             </div>
-                            <a href="pages/authors" class="btn btn-outline-primary">View Profile</a>
+
                         </div>
                     </div>
                 </div>
